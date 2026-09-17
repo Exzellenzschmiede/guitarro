@@ -125,7 +125,7 @@ private struct ProgressSummary: View {
             if state.isDue(on: .now) {
                 Text("trainer.dueNow")
             } else {
-                Text("trainer.dueAt") + Text(verbatim: " ") + Text(state.due, format: .relative(presentation: .named))
+                Text("trainer.dueAt \(state.due, format: .relative(presentation: .named))")
             }
         }
         .font(.caption)

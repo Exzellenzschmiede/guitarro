@@ -133,7 +133,7 @@ struct TuneChallengeView: View {
         if abs(cents) <= 8 {
             streak = streak.index == index ? (index, streak.count + 1) : (index, 1)
             if streak.count >= 5, !tuned.contains(index) {
-                withAnimation(.snappy) { tuned.insert(index) }
+                withAnimation(.snappy) { _ = tuned.insert(index) }
                 if tuned.count == model.tuning.stringCount { onSuccess() }
             }
         } else {

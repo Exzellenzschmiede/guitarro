@@ -1,6 +1,7 @@
 import DesignSystem
 import MusicTheory
 import SongAnalysis
+import SwiftData
 import SwiftUI
 
 struct UserSongPlayerView: View {
@@ -268,7 +269,10 @@ struct UserSongPlayerView: View {
                     .foregroundStyle(.secondary)
             }
             if let accuracy = player.accuracy {
-                Text("song.feedback.hits \(player.hits) \(player.segmentResults.count)") + Text(verbatim: " (\(Int((accuracy * 100).rounded())) %)")
+                HStack(spacing: 4) {
+                    Text("song.feedback.hits \(player.hits) \(player.segmentResults.count)")
+                    Text(verbatim: "(\(Int((accuracy * 100).rounded())) %)")
+                }
             }
         }
         .font(.subheadline)

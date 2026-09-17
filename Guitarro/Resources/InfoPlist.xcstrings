@@ -1,74 +1,86 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "CFBundleDisplayName": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guitarro"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guitarro"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guitarro"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guitarro"
           }
         }
       }
     },
-    "NSAppleMusicUsageDescription": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guitarro reads songs from your library to analyse their chords on this device."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guitarro liest Songs aus deiner Mediathek, um ihre Akkorde auf diesem Gerät zu analysieren."
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Guitarro"
           }
         }
       }
     },
-    "NSCameraUsageDescription": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guitarro watches your fretting hand to give you posture feedback. Nothing is recorded or uploaded."
+    "NSAppleMusicUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guitarro liest Songs aus deiner Mediathek, um ihre Akkorde auf diesem Gerät zu analysieren."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guitarro beobachtet deine Greifhand, um dir Feedback zur Haltung zu geben. Es wird nichts aufgezeichnet oder hochgeladen."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guitarro reads songs from your library to analyse their chords on this device."
           }
         }
       }
     },
-    "NSMicrophoneUsageDescription": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guitarro listens to your guitar to tune it and give you feedback while you play."
+    "NSCameraUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guitarro beobachtet deine Greifhand, um dir Feedback zur Haltung zu geben. Es wird nichts aufgezeichnet oder hochgeladen."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guitarro hört deine Gitarre, um sie zu stimmen und dir beim Spielen Feedback zu geben."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guitarro watches your fretting hand to give you posture feedback. Nothing is recorded or uploaded."
+          }
+        }
+      }
+    },
+    "NSMicrophoneUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guitarro hört deine Gitarre, um sie zu stimmen und dir beim Spielen Feedback zu geben."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guitarro listens to your guitar to tune it and give you feedback while you play."
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

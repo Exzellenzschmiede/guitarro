@@ -92,7 +92,7 @@ struct FretboardScreen: View {
             }
         } label: {
             Label {
-                Text("fretboard.root") + Text(verbatim: ": \(model.root.name(style: noteNaming))")
+                Text("fretboard.root.value \(model.root.name(style: noteNaming))")
             } icon: {
                 Image(systemName: "r.circle")
             }
