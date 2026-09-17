@@ -9,6 +9,7 @@ struct FretboardScreen: View {
     @AppStorage(SettingsKeys.noteNaming) private var noteNaming: NoteNamingStyle = .defaultForCurrentLocale
     @Environment(\.openURL) private var openURL
     @Environment(\.scenePhase) private var scenePhase
+    @AppStorage(PlayerSettingsKeys.handedness) private var handedness: Handedness = .right
 
     var body: some View {
         NavigationStack {
@@ -21,6 +22,7 @@ struct FretboardScreen: View {
                             tuning: model.tuning,
                             fretCount: model.fretCount,
                             orientation: isWide ? .horizontal : .vertical,
+                            isMirrored: handedness.mirrorsFretboard,
                             markers: model.markers(noteNaming: noteNaming),
                             mutedStrings: model.mutedStrings,
                             barre: model.barre

@@ -81,8 +81,8 @@ struct PracticeHomeView: View {
             .navigationDestination(for: LearnRoute.self) { route in
                 switch route {
                 case .chordTrainer: ChordTrainerView()
-                case .cameraCoach: CoachView()
-                case .aiCoach: CoachChatView()
+                case .cameraCoach: ProGate(feature: "coach.title") { CoachView() }
+                case .aiCoach: ProGate(feature: "coach.ai.title") { CoachChatView() }
                 }
             }
             .navigationDestination(for: ChordPair.self) { pair in

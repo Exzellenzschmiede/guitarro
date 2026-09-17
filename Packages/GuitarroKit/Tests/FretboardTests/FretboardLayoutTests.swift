@@ -42,6 +42,21 @@ import MusicTheory
         #expect(vertical.point(for: FretboardPosition(string: 0, fret: 1)).y < vertical.point(for: FretboardPosition(string: 0, fret: 5)).y)
     }
 
+    @Test func mirroredLayoutFlipsStringOrderAndStillHitTests() {
+        let normal = FretboardLayout(stringCount: 6, fretCount: 12, orientation: .vertical, size: CGSize(width: 360, height: 480))
+        let mirrored = FretboardLayout(stringCount: 6, fretCount: 12, orientation: .vertical, isMirrored: true, size: CGSize(width: 360, height: 480))
+        let low = FretboardPosition(string: 0, fret: 1)
+        let high = FretboardPosition(string: 5, fret: 1)
+        #expect(abs(normal.point(for: low).x - mirrored.point(for: high).x) < 0.001)
+        #expect(mirrored.point(for: low).x > mirrored.point(for: high).x)
+        for string in 0..<6 {
+            for fret in 0...12 {
+                let position = FretboardPosition(string: string, fret: fret)
+                #expect(mirrored.position(at: mirrored.point(for: position)) == position, "\(position)")
+            }
+        }
+    }
+
     @Test func pointsOutsideTheNeckAreIgnored() {
         let layout = FretboardLayout(stringCount: 6, fretCount: 12, orientation: .horizontal, size: CGSize(width: 800, height: 240))
         #expect(layout.position(at: CGPoint(x: -50, y: 120)) == nil)

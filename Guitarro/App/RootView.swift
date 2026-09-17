@@ -4,6 +4,9 @@ import SwiftUI
 /// Top-level navigation. Renders a tab bar on iPhone and a sidebar on iPad.
 struct RootView: View {
     @State private var navigation = AppNavigation()
+    @State private var store = StoreManager()
+    @AppStorage(PlayerSettingsKeys.onboardingCompleted) private var onboardingCompleted = false
+    @AppStorage(PlayerSettingsKeys.level) private var level: PlayerLevel = .beginner
 
     var body: some View {
         TabView(selection: $navigation.selectedTab) {
@@ -26,7 +29,16 @@ struct RootView: View {
         .tabViewStyle(.sidebarAdaptable)
         .tint(.guitarroAccent)
         .environment(navigation)
+        .environment(store)
         .preferredColorScheme(.dark)
+        .task {
+            navigation.selectedTab = level.startTab
+            await store.load()
+        }
+        .fullScreenCover(isPresented: Binding(get: { !onboardingCompleted }, set: { _ in })) {
+            OnboardingView()
+                .environment(navigation)
+        }
     }
 }
 

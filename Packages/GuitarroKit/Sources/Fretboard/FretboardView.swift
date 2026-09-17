@@ -47,6 +47,7 @@ public struct FretboardView: View {
     public var tuning: Tuning
     public var fretCount: Int
     public var orientation: FretboardOrientation
+    public var isMirrored: Bool
     public var markers: [FretboardMarker]
     public var mutedStrings: Set<Int>
     public var barre: FretboardBarre?
@@ -56,6 +57,7 @@ public struct FretboardView: View {
         tuning: Tuning,
         fretCount: Int = 12,
         orientation: FretboardOrientation,
+        isMirrored: Bool = false,
         markers: [FretboardMarker] = [],
         mutedStrings: Set<Int> = [],
         barre: FretboardBarre? = nil,
@@ -64,6 +66,7 @@ public struct FretboardView: View {
         self.tuning = tuning
         self.fretCount = fretCount
         self.orientation = orientation
+        self.isMirrored = isMirrored
         self.markers = markers
         self.mutedStrings = mutedStrings
         self.barre = barre
@@ -76,6 +79,7 @@ public struct FretboardView: View {
                 stringCount: tuning.stringCount,
                 fretCount: fretCount,
                 orientation: orientation,
+                isMirrored: isMirrored,
                 size: geometry.size
             )
             ZStack(alignment: .topLeading) {

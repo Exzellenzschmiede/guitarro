@@ -5,16 +5,30 @@ import SwiftUI
 
 struct SongsView: View {
     @AppStorage(SettingsKeys.noteNaming) private var noteNaming: NoteNamingStyle = .defaultForCurrentLocale
+    @Environment(StoreManager.self) private var store
+    @State private var showsPaywall = false
+
+    private var songs: [Song] { SongLibrary.songs.sorted { $0.difficulty < $1.difficulty } }
 
     var body: some View {
         NavigationStack {
             List {
                 Section {
-                    ForEach(SongLibrary.songs.sorted { $0.difficulty < $1.difficulty }) { song in
-                        NavigationLink(value: song) {
-                            SongRow(song: song, noteNaming: noteNaming)
+                    ForEach(Array(songs.enumerated()), id: \.element.id) { index, song in
+                        let needsPro = index >= FreeTier.songs && !store.hasPro
+                        if needsPro {
+                            Button {
+                                showsPaywall = true
+                            } label: {
+                                SongRow(song: song, noteNaming: noteNaming, needsPro: true)
+                            }
+                            .guitarroRow()
+                        } else {
+                            NavigationLink(value: song) {
+                                SongRow(song: song, noteNaming: noteNaming, needsPro: false)
+                            }
+                            .guitarroRow()
                         }
-                        .guitarroRow()
                     }
                 } footer: {
                     Text("songs.footer")
@@ -22,6 +36,7 @@ struct SongsView: View {
             }
             .guitarroScreen(glow: .rose)
             .navigationTitle("tab.songs")
+            .sheet(isPresented: $showsPaywall) { PaywallView() }
             .navigationDestination(for: Song.self) { song in
                 SongPlayerView(song: song)
             }
@@ -32,11 +47,17 @@ struct SongsView: View {
 private struct SongRow: View {
     let song: Song
     let noteNaming: NoteNamingStyle
+    var needsPro = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(song.title)
-                .font(.headline)
+            HStack {
+                Text(song.title)
+                    .font(.headline)
+                if needsPro {
+                    GuitarroPill("pro.badge", tint: Color(red: 1.0, green: 0.84, blue: 0.4))
+                }
+            }
             HStack(spacing: 8) {
                 Text(song.artist)
                 Text(verbatim: "·")

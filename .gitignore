@@ -13,3 +13,6 @@ Packages/*/.build/
 
 # macOS
 .DS_Store
+
+# Local signing
+Config/Signing.xcconfig

@@ -6,7 +6,9 @@ import SwiftUI
 /// The campaign overview: title art, level and a chapter map.
 struct StoryView: View {
     @Query private var progress: [StoryProgress]
+    @Environment(StoreManager.self) private var store
     @State private var showsProfile = false
+    @State private var showsPaywall = false
 
     private let campaign = StoryCampaign.lostMelody
 
@@ -38,6 +40,7 @@ struct StoryView: View {
             .sheet(isPresented: $showsProfile) {
                 NavigationStack { ProfileView() }
             }
+            .sheet(isPresented: $showsPaywall) { PaywallView() }
             .navigationDestination(for: StoryChapter.self) { chapter in
                 StorySceneView(chapter: chapter)
             }
@@ -96,9 +99,12 @@ struct StoryView: View {
             ForEach(campaign.chapters) { chapter in
                 let unlocked = state.isChapterUnlocked(chapter, in: campaign)
                 let complete = state.isChapterComplete(chapter)
-                ChapterRow(chapter: chapter, isUnlocked: unlocked, isComplete: complete, isLast: chapter.id == campaign.chapters.last?.id)
+                let needsPro = chapter.number > FreeTier.storyChapters && !store.hasPro
+                ChapterRow(chapter: chapter, isUnlocked: unlocked, isComplete: complete, needsPro: needsPro, isLast: chapter.id == campaign.chapters.last?.id)
                     .overlay {
-                        if unlocked {
+                        if unlocked, needsPro {
+                            Button { showsPaywall = true } label: { Color.clear }
+                        } else if unlocked {
                             NavigationLink(value: chapter) { Color.clear }
                         }
                     }
@@ -111,6 +117,7 @@ private struct ChapterRow: View {
     let chapter: StoryChapter
     let isUnlocked: Bool
     let isComplete: Bool
+    let needsPro: Bool
     let isLast: Bool
 
     var body: some View {
@@ -154,6 +161,8 @@ private struct ChapterRow: View {
                     .foregroundStyle(.secondary)
                 if isComplete {
                     GuitarroPill("story.chapter.done", tint: .guitarroInTune)
+                } else if needsPro {
+                    GuitarroPill("pro.badge", tint: Color(red: 1.0, green: 0.84, blue: 0.4))
                 } else if isUnlocked {
                     GuitarroPill("story.chapter.open")
                 } else {

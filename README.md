@@ -5,12 +5,18 @@ Guitar learning app for iPhone and iPad. Native Swift 6 / SwiftUI, iOS 26+.
 ## Setup
 
 ```bash
-brew install xcodegen
-xcodegen generate
+Scripts/bootstrap.sh
 open Guitarro.xcodeproj
 ```
 
-The Xcode project is generated from `project.yml`. Do not edit the project file by hand.
+The script installs XcodeGen if needed, creates `Config/Signing.xcconfig` from the example (put your
+Team ID there) and generates the project from `project.yml`. Do not edit the project file by hand.
+
+## Release
+
+`Scripts/release.sh [build-number]` archives in Release and uploads to App Store Connect / TestFlight.
+See `docs/TESTFLIGHT.md` for the one-time App Store Connect setup, in-app purchase products and
+the review checklist. In-app purchases are testable in the simulator through `Config/Guitarro.storekit`.
 
 ## Structure
 
@@ -42,6 +48,10 @@ The Xcode project is generated from `project.yml`. Do not edit the project file 
   available, otherwise via Claude with the player's own API key (stored in the Keychain)
 - Story mode: "The Lost Melody", six chapters with dialogue, choices and playable challenges
   (tuning, notes, chords, one-minute changes, a song) that gate progress; XP and levels
+- Onboarding: level, instrument, handedness (mirrored diagrams for left-handed players), note
+  naming and the microphone primer
+- Guitarro Pro (StoreKit 2): monthly, yearly and lifetime; free tier keeps tuner, fretboard,
+  trainer, two story chapters and three songs
 
 ## Design
 

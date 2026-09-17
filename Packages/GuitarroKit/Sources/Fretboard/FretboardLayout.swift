@@ -18,6 +18,8 @@ public struct FretboardLayout: Sendable, Hashable {
     public let stringCount: Int
     public let fretCount: Int
     public let orientation: FretboardOrientation
+    /// Left-handed layout: string order across the neck is flipped.
+    public let isMirrored: Bool
     public let size: CGSize
 
     /// Room before the nut where open-string and muted markers live.
@@ -32,10 +34,11 @@ public struct FretboardLayout: Sendable, Hashable {
     /// slightly relaxed so high frets stay usable on a phone screen.
     private static let compression = 0.955
 
-    public init(stringCount: Int, fretCount: Int, orientation: FretboardOrientation, size: CGSize) {
+    public init(stringCount: Int, fretCount: Int, orientation: FretboardOrientation, isMirrored: Bool = false, size: CGSize) {
         self.stringCount = max(1, stringCount)
         self.fretCount = max(1, fretCount)
         self.orientation = orientation
+        self.isMirrored = isMirrored
         self.size = size
 
         let along = orientation == .horizontal ? size.width : size.height
@@ -83,7 +86,8 @@ public struct FretboardLayout: Sendable, Hashable {
     /// Distance across the neck of a string (0 = lowest string).
     public func stringOffset(_ string: Int) -> CGFloat {
         let t = CGFloat(string) / CGFloat(max(1, stringCount - 1))
-        return orientation == .horizontal ? neckWidth * (1 - t) : neckWidth * t
+        let offset = orientation == .horizontal ? neckWidth * (1 - t) : neckWidth * t
+        return isMirrored ? neckWidth - offset : offset
     }
 
     /// Converts neck coordinates to view coordinates.
@@ -109,7 +113,7 @@ public struct FretboardLayout: Sendable, Hashable {
         let along = orientation == .horizontal ? point.x - nutOffset : point.y - nutOffset
         let across = orientation == .horizontal ? point.y - sidePadding : point.x - sidePadding
 
-        let t = across / neckWidth
+        let t = (isMirrored ? neckWidth - across : across) / neckWidth
         let stringT = orientation == .horizontal ? 1 - t : t
         let string = Int((stringT * CGFloat(stringCount - 1)).rounded())
         guard string >= 0, string < stringCount else { return nil }

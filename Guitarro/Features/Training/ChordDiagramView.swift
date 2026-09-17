@@ -8,6 +8,7 @@ struct ChordDiagramView: View {
     let voicing: ChordVoicing
     let noteNaming: NoteNamingStyle
     var isActive = false
+    @AppStorage(PlayerSettingsKeys.handedness) private var handedness: Handedness = .right
 
     var body: some View {
         VStack(spacing: 6) {
@@ -18,6 +19,7 @@ struct ChordDiagramView: View {
                 tuning: .standard,
                 fretCount: max(4, voicing.highestFret),
                 orientation: .vertical,
+                isMirrored: handedness.mirrorsFretboard,
                 markers: markers,
                 mutedStrings: voicing.mutedStrings,
                 barre: voicing.barre.map { FretboardBarre(fret: $0.fret, fromString: $0.fromString, toString: $0.toString) }
