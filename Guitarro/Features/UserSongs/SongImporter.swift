@@ -33,11 +33,18 @@ final class SongImporter {
 
     // MARK: Sources
 
-    /// A DRM-free item from the music library (`assetURL` is nil for protected tracks).
+    /// A library item. DRM-free tracks are exported and analysed; protected or cloud tracks are
+    /// registered for the system player and learn their chords on the first playback.
     func importMediaItem(_ item: MPMediaItem, into context: ModelContext) async {
         currentTitle = item.title ?? ""
-        guard let assetURL = item.assetURL else {
-            phase = .failed(AudioDecodingError.protected.localizedDescription)
+        guard let assetURL = item.assetURL, !item.hasProtectedAsset, !item.isCloudItem else {
+            let song = UserSong(
+                title: item.title ?? "", artist: item.artist ?? "", fileName: "", analysis: nil,
+                source: .appleMusic, mediaPersistentID: String(item.persistentID), duration: item.playbackDuration
+            )
+            context.insert(song)
+            try? context.save()
+            phase = .done
             return
         }
         phase = .preparing

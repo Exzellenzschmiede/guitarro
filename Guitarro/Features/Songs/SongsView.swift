@@ -169,8 +169,16 @@ private struct UserSongRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(song.title)
-                .font(.headline)
+            HStack {
+                Text(song.title)
+                    .font(.headline)
+                if song.source == .appleMusic {
+                    Image(systemName: "music.note.house").font(.caption).foregroundStyle(.secondary)
+                }
+                if !song.hasAnalysis {
+                    GuitarroPill("usersongs.needsLearn", tint: .guitarroAccent)
+                }
+            }
             HStack(spacing: 8) {
                 if !song.artist.isEmpty {
                     Text(song.artist)

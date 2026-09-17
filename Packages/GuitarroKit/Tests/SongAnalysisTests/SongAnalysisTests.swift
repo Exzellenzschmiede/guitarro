@@ -123,3 +123,47 @@ private func renderSong(_ chordIDs: [String], seconds: Double, bpm: Double = 100
         #expect(analysis.nextChordSegment(after: 1.0)?.chord == Chord(.d))
     }
 }
+
+@Suite struct LiveChordTranscriberTests {
+    private let candidates = [Chord(.g), Chord(.d), Chord(.e, .minor), Chord(.c)]
+
+    private func frame(time: Double, best: Int?, chroma tonic: PitchClass? = nil) -> LiveChordTranscriber.Frame {
+        var scores = [Float](repeating: 0.5, count: 4)
+        if let best { scores[best] = 0.9 }
+        var chroma = [Float](repeating: 0.1, count: 12)
+        if let tonic {
+            for pc in candidates[best ?? 0].pitchClasses { chroma[pc.rawValue] = 1 }
+            chroma[tonic.rawValue] = 1.2
+        }
+        return LiveChordTranscriber.Frame(time: time, scores: scores, silence: best == nil, chroma: chroma)
+    }
+
+    @Test func buildsSegmentsFromPlayerTimes() {
+        var transcriber = LiveChordTranscriber(candidates: candidates)
+        var time = 0.0
+        for chord in [0, 1, 2, 3] {
+            for _ in 0..<24 {
+                transcriber.append(frame(time: time, best: chord, chroma: .g))
+                time += 0.085
+            }
+        }
+        let analysis = transcriber.finish(duration: 10)
+        #expect(analysis.segments.compactMap(\.chord) == candidates)
+        #expect(abs(analysis.segments[1].start - 24 * 0.085) < 0.01)
+        #expect(abs(analysis.segments.last!.end - 10) < 0.001)
+        #expect(analysis.key == MusicalKey(tonic: .g, mode: .major))
+    }
+
+    @Test func seekingBackwardsReplacesLaterFrames() {
+        var transcriber = LiveChordTranscriber(candidates: candidates)
+        for i in 0..<20 { transcriber.append(frame(time: Double(i) * 0.1, best: 0)) }
+        transcriber.append(frame(time: 0.5, best: 1))
+        #expect(transcriber.frames.count == 6)
+        #expect(transcriber.frames.last?.time == 0.5)
+    }
+
+    @Test func emptyTranscriptionHasNoSegments() {
+        let transcriber = LiveChordTranscriber(candidates: candidates)
+        #expect(transcriber.finish(duration: 30).segments.isEmpty)
+    }
+}

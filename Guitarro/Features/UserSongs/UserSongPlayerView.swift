@@ -9,23 +9,40 @@ struct UserSongPlayerView: View {
     @State private var player: UserSongPlayer?
     @AppStorage(SettingsKeys.noteNaming) private var noteNaming: NoteNamingStyle = .defaultForCurrentLocale
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
         Group {
             if let player {
                 content(player)
-            } else if let analysis = song.analysis {
-                Color.clear.onAppear { player = UserSongPlayer(fileURL: song.fileURL, analysis: analysis) }
             } else {
-                ContentUnavailableView("usersongs.noAnalysis", systemImage: "waveform.slash")
+                Color.clear.onAppear { player = UserSongPlayer(song: song) }
             }
         }
         .guitarroScreen(glow: .rose)
         .navigationTitle(song.title)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if song.source == .appleMusic, let player, !player.needsLearnRun {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        player.startLearnRun()
+                    } label: {
+                        Label("usersongs.learn.again", systemImage: "ear.badge.waveform")
+                    }
+                    .disabled(player.isPlaying)
+                }
+            }
+        }
         .onDisappear { player?.pause() }
         .onChange(of: scenePhase) { _, phase in
             if phase != .active { player?.pause() }
+        }
+        .onChange(of: player?.learnedAnalysis) { _, learned in
+            if let learned {
+                song.analysis = learned
+                try? modelContext.save()
+            }
         }
     }
 
@@ -36,11 +53,21 @@ struct UserSongPlayerView: View {
                 if let error = player.loadError {
                     Label(error, systemImage: "exclamationmark.triangle").foregroundStyle(Color.guitarroSharp)
                 }
-                chordDisplay(player)
-                timeline(player)
-                transport(player)
-                loopControls(player)
-                feedback(player)
+                if player.mode == .learning {
+                    learningCard(player)
+                } else if player.needsLearnRun {
+                    learnCard(player)
+                } else {
+                    chordDisplay(player)
+                    timeline(player)
+                }
+                if !(player.needsLearnRun && player.mode != .learning) {
+                    transport(player)
+                }
+                if !player.needsLearnRun, player.mode != .learning {
+                    loopControls(player)
+                    feedback(player)
+                }
             }
             .padding()
             .frame(maxWidth: 720)
@@ -48,15 +75,70 @@ struct UserSongPlayerView: View {
         }
     }
 
+    private func learnCard(_ player: UserSongPlayer) -> some View {
+        VStack(spacing: GuitarroSpacing.medium) {
+            GuitarroIconBadge("ear.badge.waveform", size: 72, palette: .rose)
+            Text("usersongs.learn.title")
+                .font(.guitarroTitle)
+                .multilineTextAlignment(.center)
+            Text("usersongs.learn.body")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+            if player.canListen {
+                Label("usersongs.learn.removeHeadphones", systemImage: "headphones")
+                    .font(.caption)
+                    .foregroundStyle(Color.guitarroAccent)
+            }
+            Button {
+                player.startLearnRun()
+            } label: {
+                Label("usersongs.learn.start", systemImage: "play.fill")
+            }
+            .buttonStyle(.guitarroPrimary(.rose))
+            .disabled(player.loadError != nil)
+        }
+        .frame(maxWidth: .infinity)
+        .guitarroCard()
+    }
+
+    private func learningCard(_ player: UserSongPlayer) -> some View {
+        VStack(spacing: GuitarroSpacing.medium) {
+            Image(systemName: "waveform")
+                .font(.system(size: 56))
+                .foregroundStyle(.guitarroAccentGradient)
+                .symbolEffect(.variableColor.iterative, isActive: true)
+            Text("usersongs.learn.listening")
+                .font(.guitarroHeadline)
+            ProgressView(value: min(1, player.currentTime / max(1, player.duration)))
+                .tint(.guitarroAccent)
+            Text(verbatim: "\(timeString(player.currentTime)) / \(timeString(player.duration)) · \(player.learnedFrames)")
+                .font(.caption.monospacedDigit())
+                .foregroundStyle(.secondary)
+            Button {
+                player.pause()
+            } label: {
+                Label("usersongs.learn.finish", systemImage: "checkmark")
+            }
+            .buttonStyle(.guitarroSecondary)
+        }
+        .frame(maxWidth: .infinity)
+        .guitarroCard()
+    }
+
     private func header(_ player: UserSongPlayer) -> some View {
         HStack(spacing: GuitarroSpacing.medium) {
             if !song.artist.isEmpty {
                 Text(song.artist)
             }
-            if let key = player.analysis.key {
+            if song.source == .appleMusic {
+                Image(systemName: "music.note.house")
+            }
+            if let key = player.analysis?.key {
                 Label { Text(key.name(style: noteNaming)) } icon: { Image(systemName: "music.quarternote.3") }
             }
-            if let bpm = player.analysis.beatsPerMinute {
+            if let bpm = player.analysis?.beatsPerMinute {
                 Label { Text(verbatim: "\(bpm) BPM") } icon: { Image(systemName: "metronome") }
             }
             Spacer()
@@ -100,7 +182,7 @@ struct UserSongPlayerView: View {
         ScrollViewReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 3) {
-                    ForEach(player.analysis.segments) { segment in
+                    ForEach(player.analysis?.segments ?? []) { segment in
                         let isCurrent = segment.contains(player.currentTime)
                         let inLoop = isInLoop(segment, player: player)
                         Text(segment.chord?.symbol(style: noteNaming) ?? "·")
@@ -130,6 +212,7 @@ struct UserSongPlayerView: View {
                 Button { player.stop() } label: { Image(systemName: "backward.end.fill").font(.title2) }
                 Button { player.togglePlay() } label: {
                     Image(systemName: player.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                        .accessibilityLabel(player.isPlaying ? "song.stop" : "song.play")
                         .font(.system(size: 64))
                         .foregroundStyle(.guitarroAccentGradient)
                 }
@@ -142,6 +225,12 @@ struct UserSongPlayerView: View {
             }
             .font(.subheadline)
             Slider(value: Binding(get: { Double(player.ratePercent) }, set: { player.ratePercent = Int($0) }), in: 50...100, step: 5)
+                .disabled(player.mode == .learning)
+            if !player.supportsRate {
+                Text("usersongs.rate.bestEffort")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
         }
         .guitarroCard()
     }
@@ -168,6 +257,11 @@ struct UserSongPlayerView: View {
         VStack(alignment: .leading, spacing: GuitarroSpacing.small) {
             Toggle("song.feedback", isOn: Bindable(player).feedbackEnabled)
                 .disabled(player.isPlaying)
+            if song.source == .appleMusic, let learned = player.analysis, !learned.segments.isEmpty {
+                Text("usersongs.learn.hint")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
             if player.feedbackEnabled, !player.canListen {
                 Label("usersongs.feedback.needsHeadphones", systemImage: "headphones")
                     .font(.caption)

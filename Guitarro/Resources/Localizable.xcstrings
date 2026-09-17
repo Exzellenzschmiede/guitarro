@@ -6036,6 +6036,142 @@
         }
       }
     },
+    "usersongs.learn.again": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learn chords again"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akkorde erneut lernen"
+          }
+        }
+      }
+    },
+    "usersongs.learn.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This track plays through the system player. Play it once through the speaker: Guitarro listens with the microphone and writes down the chords with timestamps. Afterwards you can loop, slow down and play along with headphones."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Titel läuft über den Systemplayer. Spiel ihn einmal über den Lautsprecher ab: Guitarro hört mit dem Mikrofon zu und schreibt die Akkorde mit Zeitstempeln mit. Danach kannst du loopen, verlangsamen und mit Kopfhörern mitspielen."
+          }
+        }
+      }
+    },
+    "usersongs.learn.finish": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish now"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jetzt beenden"
+          }
+        }
+      }
+    },
+    "usersongs.learn.hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chords were learned through the microphone. Room noise can cause mistakes; learn again in a quiet room if needed."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Akkorde wurden über das Mikrofon gelernt. Raumgeräusche können Fehler verursachen; bei Bedarf in einem ruhigen Raum erneut lernen."
+          }
+        }
+      }
+    },
+    "usersongs.learn.listening": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listening and writing down chords…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höre zu und schreibe Akkorde mit …"
+          }
+        }
+      }
+    },
+    "usersongs.learn.removeHeadphones": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unplug headphones for the learn run so the microphone can hear the music."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Für den Lernlauf Kopfhörer abziehen, damit das Mikrofon die Musik hört."
+          }
+        }
+      }
+    },
+    "usersongs.learn.start": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play and listen"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abspielen und mithören"
+          }
+        }
+      }
+    },
+    "usersongs.learn.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learn the chords"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akkorde lernen"
+          }
+        }
+      }
+    },
     "usersongs.libraryDenied": {
       "extractionState": "manual",
       "localizations": {
@@ -6049,6 +6185,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kein Zugriff auf die Musikbibliothek. Du kannst ihn in den Einstellungen erlauben."
+          }
+        }
+      }
+    },
+    "usersongs.needsLearn": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chords not learned yet"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akkorde noch nicht gelernt"
           }
         }
       }
@@ -6178,13 +6331,30 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apple Music streaming tracks are copy-protected and cannot be analysed. Purchased or imported files work."
+            "value": "Apple Music tracks play through the system player. Guitarro listens through the microphone on the first playback and writes down the chords."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apple-Music-Streams sind kopiergeschützt und lassen sich nicht analysieren. Gekaufte oder importierte Dateien funktionieren."
+            "value": "Apple-Music-Titel laufen über den Systemplayer. Guitarro hört beim ersten Abspielen über das Mikrofon mit und schreibt die Akkorde mit."
+          }
+        }
+      }
+    },
+    "usersongs.rate.bestEffort": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system player may ignore tempo changes for streamed tracks."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Streams ignoriert der Systemplayer Tempoänderungen unter Umständen."
           }
         }
       }
@@ -6202,6 +6372,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Meine Songs"
+          }
+        }
+      }
+    },
+    "usersongs.systemPlayer.missing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This track is no longer in your library."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Titel ist nicht mehr in deiner Mediathek."
           }
         }
       }

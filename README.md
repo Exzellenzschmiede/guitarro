@@ -51,7 +51,9 @@ the review checklist. In-app purchases are testable in the simulator through `Co
 - Story mode: "The Lost Melody", six chapters with dialogue, choices and playable challenges
   (tuning, notes, chords, one-minute changes, a song) that gate progress; XP and levels
 - Your own songs (Pro): import DRM-free tracks from the music library or audio files, get chords,
-  key and tempo, play with tempo 50–100 %, A/B loops and chord feedback with headphones
+  key and tempo, play with tempo 50–100 %, A/B loops and chord feedback with headphones.
+  Apple Music / protected tracks play through the system music player; on a first "learn run" the
+  app transcribes the chords through the microphone and keeps the timeline
 - Onboarding: level, instrument, handedness (mirrored diagrams for left-handed players), note
   naming and the microphone primer
 - Guitarro Pro (StoreKit 2): monthly, yearly and lifetime; free tier keeps tuner, fretboard,

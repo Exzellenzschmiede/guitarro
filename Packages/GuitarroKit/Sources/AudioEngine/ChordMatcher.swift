@@ -11,6 +11,17 @@ public struct ChordEstimate: Sendable, Equatable {
     public let margin: Float
     public let chroma: [Float]
     public let rms: Float
+    /// Similarity per candidate of the matcher that produced this estimate; empty for silence.
+    public let scores: [Float]
+
+    public init(chord: Chord?, confidence: Float, margin: Float, chroma: [Float], rms: Float, scores: [Float] = []) {
+        self.chord = chord
+        self.confidence = confidence
+        self.margin = margin
+        self.chroma = chroma
+        self.rms = rms
+        self.scores = scores
+    }
 
     public static let silence = ChordEstimate(chord: nil, confidence: 0, margin: 0, chroma: [Float](repeating: 0, count: 12), rms: 0)
 }
@@ -75,7 +86,8 @@ public struct ChordMatcher: Sendable {
         var bestIndex = -1
         var bestScore: Float = 0
         var secondScore: Float = 0
-        for (index, score) in scores(for: chroma).enumerated() {
+        let allScores = scores(for: chroma)
+        for (index, score) in allScores.enumerated() {
             if score > bestScore {
                 secondScore = bestScore
                 bestScore = score
@@ -91,7 +103,8 @@ public struct ChordMatcher: Sendable {
             confidence: bestScore,
             margin: max(0, bestScore - secondScore),
             chroma: chroma,
-            rms: frame.rms
+            rms: frame.rms,
+            scores: allScores
         )
     }
 

@@ -1,15 +1,15 @@
 import MediaPlayer
 import SwiftUI
 
-/// Wraps the system music library picker. Protected (Apple Music) tracks are hidden.
+/// Wraps the system music library picker. Protected tracks are allowed: they play through the system player.
 struct MediaPickerView: UIViewControllerRepresentable {
     let onPick: (MPMediaItem?) -> Void
 
     func makeUIViewController(context: Context) -> MPMediaPickerController {
         let picker = MPMediaPickerController(mediaTypes: .music)
         picker.allowsPickingMultipleItems = false
-        picker.showsCloudItems = false
-        picker.showsItemsWithProtectedAssets = false
+        picker.showsCloudItems = true
+        picker.showsItemsWithProtectedAssets = true
         picker.prompt = String(localized: "usersongs.picker.prompt")
         picker.delegate = context.coordinator
         return picker
