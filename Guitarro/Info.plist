@@ -22,6 +22,8 @@
 	<string>1</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Guitarro reads songs from your library to analyse their chords on this device.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Guitarro watches your fretting hand to give you posture feedback. Nothing is recorded or uploaded.</string>
 	<key>NSMicrophoneUsageDescription</key>

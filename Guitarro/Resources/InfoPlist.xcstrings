@@ -18,6 +18,23 @@
         }
       }
     },
+    "NSAppleMusicUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guitarro reads songs from your library to analyse their chords on this device."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guitarro liest Songs aus deiner Mediathek, um ihre Akkorde auf diesem Gerät zu analysieren."
+          }
+        }
+      }
+    },
     "NSCameraUsageDescription": {
       "extractionState": "manual",
       "localizations": {

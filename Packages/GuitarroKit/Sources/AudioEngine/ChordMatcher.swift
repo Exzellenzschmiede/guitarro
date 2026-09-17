@@ -54,6 +54,17 @@ public struct ChordMatcher: Sendable {
         templates = candidates.map(Self.template(for:))
     }
 
+    /// Similarity of a chroma vector with every candidate (same order as `candidates`), triad bias included.
+    public func scores(for chroma: [Float]) -> [Float] {
+        let chromaNorm = sqrt(chroma.reduce(0) { $0 + $1 * $1 })
+        guard chromaNorm > 0 else { return [Float](repeating: 0, count: candidates.count) }
+        return templates.enumerated().map { index, template in
+            var dot: Float = 0
+            for i in 0..<12 { dot += chroma[i] * template[i] }
+            return dot / chromaNorm + (candidates[index].intervals.count == 3 ? triadBias : 0)
+        }
+    }
+
     public func match(_ frame: ChromaFrame) -> ChordEstimate {
         let chroma = frame.chroma
         guard frame.rms >= minimumRMS, let peak = chroma.max(), peak > 0 else {
@@ -64,12 +75,7 @@ public struct ChordMatcher: Sendable {
         var bestIndex = -1
         var bestScore: Float = 0
         var secondScore: Float = 0
-        let chromaNorm = sqrt(chroma.reduce(0) { $0 + $1 * $1 })
-        for (index, template) in templates.enumerated() {
-            var dot: Float = 0
-            for i in 0..<12 { dot += chroma[i] * template[i] }
-            var score = chromaNorm > 0 ? dot / chromaNorm : 0
-            if candidates[index].intervals.count == 3 { score += triadBias }
+        for (index, score) in scores(for: chroma).enumerated() {
             if score > bestScore {
                 secondScore = bestScore
                 bestScore = score

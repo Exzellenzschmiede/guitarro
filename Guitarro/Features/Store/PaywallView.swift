@@ -55,6 +55,7 @@ struct PaywallView: View {
         VStack(alignment: .leading, spacing: GuitarroSpacing.small) {
             ProFeature(symbol: "book.pages", text: "pro.feature.story")
             ProFeature(symbol: "music.note.list", text: "pro.feature.songs")
+            ProFeature(symbol: "music.mic", text: "pro.feature.ownSongs")
             ProFeature(symbol: "camera.viewfinder", text: "pro.feature.camera")
             ProFeature(symbol: "sparkles", text: "pro.feature.ai")
             ProFeature(symbol: "arrow.down.circle", text: "pro.feature.updates")

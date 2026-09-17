@@ -39,6 +39,7 @@ targets:
           - Songs
           - AICoach
           - Story
+          - SongAnalysis
     info:
       path: Guitarro/Info.plist
       properties:
@@ -56,6 +57,7 @@ targets:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         NSMicrophoneUsageDescription: Guitarro listens to your guitar to tune it and give you feedback while you play.
+        NSAppleMusicUsageDescription: Guitarro reads songs from your library to analyse their chords on this device.
         NSCameraUsageDescription: Guitarro watches your fretting hand to give you posture feedback. Nothing is recorded or uploaded.
         ITSAppUsesNonExemptEncryption: false
     settings:

@@ -15,6 +15,7 @@ let package = Package(
         .library(name: "Songs", targets: ["Songs"]),
         .library(name: "AICoach", targets: ["AICoach"]),
         .library(name: "Story", targets: ["Story"]),
+        .library(name: "SongAnalysis", targets: ["SongAnalysis"]),
     ],
     targets: [
         .target(name: "MusicTheory"),
@@ -26,6 +27,7 @@ let package = Package(
         .target(name: "Songs", dependencies: ["MusicTheory"]),
         .target(name: "AICoach", dependencies: ["MusicTheory"]),
         .target(name: "Story"),
+        .target(name: "SongAnalysis", dependencies: ["AudioEngine", "MusicTheory"]),
         .testTarget(name: "MusicTheoryTests", dependencies: ["MusicTheory"]),
         .testTarget(name: "AudioEngineTests", dependencies: ["AudioEngine"]),
         .testTarget(name: "FretboardTests", dependencies: ["Fretboard"]),
@@ -34,6 +36,7 @@ let package = Package(
         .testTarget(name: "SongsTests", dependencies: ["Songs"]),
         .testTarget(name: "AICoachTests", dependencies: ["AICoach"]),
         .testTarget(name: "StoryTests", dependencies: ["Story"]),
+        .testTarget(name: "SongAnalysisTests", dependencies: ["SongAnalysis", "AudioEngine"]),
     ],
     swiftLanguageModes: [.v6]
 )

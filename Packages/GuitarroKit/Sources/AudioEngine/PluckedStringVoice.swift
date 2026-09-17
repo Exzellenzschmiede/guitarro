@@ -2,7 +2,7 @@ import Foundation
 
 /// One Karplus-Strong string: a noise burst circulating through a fractional delay line
 /// with a gentle low-pass filter, which decays into a plucked-string tone.
-struct PluckedStringVoice: Sendable {
+public struct PluckedStringVoice: Sendable {
     private var buffer: [Float]
     private var writeIndex = 0
     private var previous: Float = 0
@@ -10,7 +10,7 @@ struct PluckedStringVoice: Sendable {
     private let decay: Float
     private var startDelay: Int
     private var quietFrames = 0
-    private(set) var isActive = true
+    public private(set) var isActive = true
 
     /// - Parameters:
     ///   - frequency: fundamental in Hz
@@ -18,13 +18,13 @@ struct PluckedStringVoice: Sendable {
     ///   - velocity: 0…1, scales the excitation
     ///   - startDelay: frames to wait before the pluck starts (used for strums)
     ///   - sustain: seconds until the tone has decayed to roughly −40 dB
-    init(frequency: Double, sampleRate: Double, velocity: Float = 0.8, startDelay: Int = 0, sustain: Double = 2.5) {
+    public init(frequency: Double, sampleRate: Double, velocity: Float = 0.8, startDelay: Int = 0, sustain: Double = 2.5) {
         var generator = SystemRandomNumberGenerator()
         self.init(frequency: frequency, sampleRate: sampleRate, velocity: velocity, startDelay: startDelay, sustain: sustain, using: &generator)
     }
 
     /// Deterministic variant: the excitation noise comes from `generator`.
-    init<G: RandomNumberGenerator>(frequency: Double, sampleRate: Double, velocity: Float = 0.8, startDelay: Int = 0, sustain: Double = 2.5, using generator: inout G) {
+    public init<G: RandomNumberGenerator>(frequency: Double, sampleRate: Double, velocity: Float = 0.8, startDelay: Int = 0, sustain: Double = 2.5, using generator: inout G) {
         // The two-point average in the loop adds half a sample of delay.
         let loopLength = max(2, sampleRate / max(20, frequency) - 0.5)
         delay = Float(loopLength)
@@ -41,7 +41,7 @@ struct PluckedStringVoice: Sendable {
     }
 
     /// Adds this voice's output to `output`.
-    mutating func render(adding output: UnsafeMutablePointer<Float>, frames: Int) {
+    public mutating func render(adding output: UnsafeMutablePointer<Float>, frames: Int) {
         var frame = 0
         if startDelay > 0 {
             let skipped = min(startDelay, frames)

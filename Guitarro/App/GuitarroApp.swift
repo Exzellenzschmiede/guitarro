@@ -7,6 +7,6 @@ struct GuitarroApp: App {
         WindowGroup {
             RootView()
         }
-        .modelContainer(for: [ChordChangeProgress.self, StoryProgress.self])
+        .modelContainer(for: [ChordChangeProgress.self, StoryProgress.self, UserSong.self])
     }
 }
