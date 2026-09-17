@@ -1,0 +1,72 @@
+name: Guitarro
+options:
+  bundleIdPrefix: de.kaniut
+  deploymentTarget:
+    iOS: "26.0"
+  developmentLanguage: en
+  xcodeVersion: "27.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+
+packages:
+  GuitarroKit:
+    path: Packages/GuitarroKit
+
+targets:
+  Guitarro:
+    type: application
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Guitarro
+        excludes:
+          - Info.plist
+    dependencies:
+      - package: GuitarroKit
+        products:
+          - MusicTheory
+          - AudioEngine
+          - DesignSystem
+          - Fretboard
+          - Training
+          - HandCoach
+          - Songs
+          - AICoach
+          - Story
+    info:
+      path: Guitarro/Info.plist
+      properties:
+        CFBundleDisplayName: Guitarro
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSMicrophoneUsageDescription: Guitarro listens to your guitar to tune it and give you feedback while you play.
+        NSCameraUsageDescription: Guitarro watches your fretting hand to give you posture feedback. Nothing is recorded or uploaded.
+        ITSAppUsesNonExemptEncryption: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: de.kaniut.guitarro
+        TARGETED_DEVICE_FAMILY: "1,2"
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_STYLE: Automatic
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+    scheme:
+      testTargets: []
