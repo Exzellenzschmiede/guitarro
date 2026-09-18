@@ -12,12 +12,20 @@ own. Version `1.0.0` is set in `project.yml`; `Scripts/release.sh` stamps the bu
    mailbox exists before submitting, App Review may write to it.
 3. **App Store Connect -> Apps -> New App:** iOS, name "Guitarro", primary language German,
    bundle id `de.kaniut.guitarro`, SKU `guitarro-ios`.
-4. **In-app purchases** (Monetization): subscription group "Guitarro Pro" with
-   `de.kaniut.guitarro.pro.monthly` (1 month, 4,99 €) and `de.kaniut.guitarro.pro.yearly`
-   (1 year, 29,99 €, optional 7-day trial); non-consumable `de.kaniut.guitarro.pro.lifetime`
-   (39,99 €). Each needs a localized display name, a description and a review screenshot of
-   the paywall. Attach all three to the version under "In-App Purchases and Subscriptions".
-   The subscription group also needs a localized group name.
+4. **In-app purchases** (Monetization). Product ids must match `StoreManager.ProductID`.
+   Review screenshot for all three: `build/screenshots/iap-review-paywall.png` (the paywall,
+   reached from any Pro tile, e.g. Story -> Roadtrip).
+
+   Subscription group `Guitarro Pro`, localized group name: de "Guitarro Pro", en "Guitarro Pro".
+
+   | Product | Type | Price | Display name (de / en) | Description (de / en) |
+   |---|---|---|---|---|
+   | `de.kaniut.guitarro.pro.monthly` | auto-renewable, 1 month | 4,99 € | Guitarro Pro Monat / Guitarro Pro Monthly | Alle Stories, Songs und Coaches, monatlich / All stories, songs and coaches, monthly |
+   | `de.kaniut.guitarro.pro.yearly` | auto-renewable, 1 year, optional 7-day free trial | 29,99 € | Guitarro Pro Jahr / Guitarro Pro Yearly | Alle Stories, Songs und Coaches, jährlich / All stories, songs and coaches, yearly |
+   | `de.kaniut.guitarro.pro.lifetime` | non-consumable | 39,99 € | Guitarro Pro Lebenslang / Guitarro Pro Lifetime | Alle Pro-Funktionen, einmalig gekauft / All Pro features with a one-time purchase |
+
+   Limits: display name 30 characters, description 45 characters. Attach all three to the version
+   under "In-App Purchases and Subscriptions".
 5. **Upload a build:** `Scripts/release.sh` (see `docs/TESTFLIGHT.md`), then test it once via
    TestFlight on a real device — especially microphone detection with a real guitar.
 
