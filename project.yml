@@ -45,6 +45,8 @@ targets:
       path: Guitarro/Info.plist
       properties:
         CFBundleDisplayName: Guitarro
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         UILaunchScreen: {}
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: true
