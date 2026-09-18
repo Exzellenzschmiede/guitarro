@@ -1,3 +1,4 @@
+import AudioEngine
 import DesignSystem
 import SwiftUI
 
@@ -33,6 +34,7 @@ struct RootView: View {
         .preferredColorScheme(.dark)
         .task {
             navigation.selectedTab = level.startTab
+            try? await AudioSession.activateAsync()
             await store.load()
         }
         .fullScreenCover(isPresented: Binding(get: { !onboardingCompleted }, set: { _ in })) {

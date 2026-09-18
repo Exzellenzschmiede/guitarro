@@ -11,9 +11,20 @@ protocol SongPlayback: AnyObject {
     /// 1 = normal speed. The system player may ignore rates for streamed tracks.
     var rate: Float { get set }
     var supportsRate: Bool { get }
-    func play()
+    /// Starts playback, preparing the player first if needed.
+    func play() async throws
     func pause()
     func stop()
+}
+
+enum SongPlaybackError: Error, LocalizedError {
+    case prepareFailed(String)
+
+    var errorDescription: String? {
+        switch self {
+        case .prepareFailed(let message): String(format: String(localized: "usersongs.systemPlayer.prepareFailed %@"), message)
+        }
+    }
 }
 
 /// AVAudioPlayer-backed playback for DRM-free files (pitch-preserving rate).
@@ -39,7 +50,7 @@ final class FilePlayback: SongPlayback {
     }
     var supportsRate: Bool { true }
 
-    func play() { player.play() }
+    func play() async throws { player.play() }
     func pause() { player.pause() }
     func stop() {
         player.stop()
@@ -52,6 +63,7 @@ final class FilePlayback: SongPlayback {
 final class SystemMusicPlayback: SongPlayback {
     private let player = MPMusicPlayerController.applicationMusicPlayer
     private let itemDuration: Double
+    private var prepared = false
 
     init?(persistentID: String) {
         guard let id = UInt64(persistentID) else { return nil }
@@ -62,7 +74,21 @@ final class SystemMusicPlayback: SongPlayback {
         player.setQueue(with: MPMediaItemCollection(items: [item]))
         player.repeatMode = .none
         player.shuffleMode = .off
-        player.prepareToPlay()
+    }
+
+    /// Prepares the queue once; the system reports subscription and network problems here.
+    private func prepareIfNeeded() async throws {
+        guard !prepared else { return }
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            player.prepareToPlay { error in
+                if let error {
+                    continuation.resume(throwing: SongPlaybackError.prepareFailed(error.localizedDescription))
+                } else {
+                    continuation.resume()
+                }
+            }
+        }
+        prepared = true
     }
 
     var isPlaying: Bool { player.playbackState == .playing }
@@ -78,7 +104,11 @@ final class SystemMusicPlayback: SongPlayback {
     /// Rate changes are applied on a best-effort basis; streamed tracks often ignore them.
     var supportsRate: Bool { false }
 
-    func play() { player.play() }
+    func play() async throws {
+        try await prepareIfNeeded()
+        player.play()
+    }
+
     func pause() { player.pause() }
     func stop() {
         player.stop()

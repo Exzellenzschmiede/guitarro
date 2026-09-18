@@ -42,9 +42,10 @@ final class UserSongPlayer {
         source = song.source
         analysis = song.analysis
         do {
-            try AudioSession.activate()
             switch song.source {
             case .file:
+                // The file player needs our session; the system player brings its own.
+                try AudioSession.activate()
                 playback = try FilePlayback(url: song.fileURL)
             case .appleMusic:
                 guard let id = song.mediaPersistentID, let system = SystemMusicPlayback(persistentID: id) else {
@@ -57,6 +58,8 @@ final class UserSongPlayer {
             loadError = error.localizedDescription
         }
     }
+
+    private var playbackTask: Task<Void, Never>?
 
     var isPlaying: Bool { mode != .idle }
     var supportsRate: Bool { playback?.supportsRate ?? true }
@@ -79,16 +82,24 @@ final class UserSongPlayer {
     }
 
     func play() {
-        guard let playback, mode == .idle else { return }
-        playback.rate = Float(ratePercent) / 100
-        if let loopStart, let loopEnd, currentTime < loopStart || currentTime >= loopEnd {
-            playback.currentTime = loopStart
-        }
-        playback.play()
-        mode = .playing
-        startTicker()
-        if feedbackEnabled, canListen {
-            listenTask = Task { await listen(transcribing: false) }
+        guard let playback, mode == .idle, playbackTask == nil else { return }
+        loadError = nil
+        playbackTask = Task {
+            defer { playbackTask = nil }
+            do {
+                playback.rate = Float(ratePercent) / 100
+                if let loopStart, let loopEnd, currentTime < loopStart || currentTime >= loopEnd {
+                    playback.currentTime = loopStart
+                }
+                try await playback.play()
+                mode = .playing
+                startTicker()
+                if feedbackEnabled, canListen {
+                    listenTask = Task { await listen(transcribing: false) }
+                }
+            } catch {
+                loadError = error.localizedDescription
+            }
         }
     }
 
@@ -118,18 +129,26 @@ final class UserSongPlayer {
 
     /// Plays from the start through the speaker and transcribes what the microphone hears.
     func startLearnRun() {
-        guard let playback, mode == .idle else { return }
-        transcriber.reset()
-        learnedFrames = 0
-        learnedAnalysis = nil
-        clearLoop()
-        playback.rate = 1
-        playback.currentTime = 0
-        currentTime = 0
-        playback.play()
-        mode = .learning
-        startTicker()
-        listenTask = Task { await listen(transcribing: true) }
+        guard let playback, mode == .idle, playbackTask == nil else { return }
+        loadError = nil
+        playbackTask = Task {
+            defer { playbackTask = nil }
+            do {
+                transcriber.reset()
+                learnedFrames = 0
+                learnedAnalysis = nil
+                clearLoop()
+                playback.rate = 1
+                playback.currentTime = 0
+                currentTime = 0
+                try await playback.play()
+                mode = .learning
+                startTicker()
+                listenTask = Task { await listen(transcribing: true) }
+            } catch {
+                loadError = error.localizedDescription
+            }
+        }
     }
 
     private func finishLearnRun() {
@@ -185,6 +204,8 @@ final class UserSongPlayer {
 
     private func listen(transcribing: Bool) async {
         guard await MicrophonePermission.request() else { return }
+        // Activate off the main thread; the tracker's own activation is then a no-op.
+        try? await AudioSession.activateAsync()
         let tracker = ChordTracker()
         guard let stream = try? tracker.start() else { return }
         self.tracker = tracker
