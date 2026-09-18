@@ -22,7 +22,7 @@ public struct YINPitchDetector: Sendable {
         threshold: Float = 0.15,
         minimumFrequency: Double = 55,
         maximumFrequency: Double = 1500,
-        silenceThreshold: Float = 0.005
+        silenceThreshold: Float = 0.002
     ) {
         precondition(windowSize >= 256, "windowSize must be at least 256 samples")
         self.sampleRate = sampleRate
@@ -35,10 +35,24 @@ public struct YINPitchDetector: Sendable {
 
     /// Estimates the pitch of `samples`. Only the first `windowSize` samples are used.
     /// Returns `nil` for silence or when no periodicity is found.
-    public func estimate(_ samples: [Float]) -> PitchEstimate? {
-        guard samples.count >= windowSize else { return nil }
+    public func estimate(_ input: [Float]) -> PitchEstimate? {
+        guard input.count >= windowSize else { return nil }
         let n = windowSize
         let half = n / 2
+
+        // Remove DC and sub-bass rumble (handling noise, room hum) with a one-pole high-pass
+        // around 40 Hz; guitar fundamentals start at 82 Hz.
+        var samples = [Float](repeating: 0, count: n)
+        let alpha = Float(exp(-2 * Double.pi * 40 / sampleRate))
+        var previousInput: Float = 0
+        var previousOutput: Float = 0
+        for i in 0..<n {
+            let x = input[i]
+            let y = alpha * (previousOutput + x - previousInput)
+            samples[i] = y
+            previousInput = x
+            previousOutput = y
+        }
 
         var rms: Float = 0
         vDSP_rmsqv(samples, 1, &rms, vDSP_Length(n))
@@ -101,6 +115,21 @@ public struct YINPitchDetector: Sendable {
             }
             guard minValue < 0.5 else { return nil }
             tauEstimate = minIndex
+        }
+
+        // Octave guard: a plucked string whose second harmonic is louder than the fundamental
+        // produces a shallow first dip at half the true period and a much deeper one at the
+        // true period. Only then take the lower octave; for a clean tone both dips are near
+        // zero and the shorter period is correct.
+        let doubled = tauEstimate * 2
+        if doubled + 2 <= tauMax, cmnd[tauEstimate] > 0.06 {
+            var lowIndex = doubled
+            for t in (doubled - 2)...(doubled + 2) where cmnd[t] < cmnd[lowIndex] {
+                lowIndex = t
+            }
+            if cmnd[lowIndex] < 0.5 * cmnd[tauEstimate] {
+                tauEstimate = lowIndex
+            }
         }
 
         // Parabolic interpolation around the minimum for sub-sample precision.

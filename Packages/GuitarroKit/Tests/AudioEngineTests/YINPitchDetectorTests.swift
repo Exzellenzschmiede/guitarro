@@ -53,6 +53,26 @@ private func synthesize(
         #expect(abs(estimate.frequency - 82.41) / 82.41 < 0.01)
     }
 
+    @Test(arguments: [82.41, 110.0, 146.83])
+    func dominantSecondHarmonicKeepsFundamental(frequency: Double) {
+        // Real low strings often have a second harmonic louder than the fundamental.
+        let signal = synthesize(frequency: frequency, amplitude: 0.25, harmonics: [(2, 0.6), (3, 0.3), (4, 0.15)])
+        let estimate = detector.estimate(signal)
+        #expect(estimate != nil)
+        guard let estimate else { return }
+        #expect(abs(estimate.frequency - frequency) / frequency < 0.01, "\(frequency) Hz read as \(estimate.frequency)")
+    }
+
+    @Test func rumbleDoesNotShiftThePitch() {
+        var signal = synthesize(frequency: 196, amplitude: 0.4)
+        let rumble = synthesize(frequency: 12, amplitude: 0.5)
+        for i in signal.indices { signal[i] += rumble[i] }
+        let estimate = detector.estimate(signal)
+        #expect(estimate != nil)
+        guard let estimate else { return }
+        #expect(abs(estimate.frequency - 196) / 196 < 0.005, "read as \(estimate.frequency)")
+    }
+
     @Test func noiseIsRejectedOrUnclear() {
         var generator = SystemRandomNumberGenerator()
         let noise = (0..<4096).map { _ in Float.random(in: -0.5...0.5, using: &generator) }

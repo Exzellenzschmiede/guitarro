@@ -3,6 +3,7 @@ import MusicTheory
 import SwiftData
 import SwiftUI
 import Training
+import Tutorials
 
 struct ChordChangeSessionView: View {
     let pair: ChordPair
@@ -129,6 +130,13 @@ struct ChordChangeSessionView: View {
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
+                if let tutorial = TutorialLibrary.tutorial(for: .chordChanges(from: session.from.id, to: session.to.id, minimum: 0)) {
+                    NavigationLink(value: tutorial) {
+                        Label("trainer.lesson", systemImage: "play.rectangle.on.rectangle")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(Color.guitarroAccent)
+                    }
+                }
                 if session.microphoneStatus == .permissionDenied {
                     Label("trainer.micDenied", systemImage: "mic.slash")
                         .font(.caption)

@@ -1364,16 +1364,16 @@
     "fretboard.root.value %@": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Root: %@"
-          }
-        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Grundton: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Root: %@"
           }
         }
       }
@@ -2292,6 +2292,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Always in tune"
+          }
+        }
+      }
+    },
+    "practice.tile.tutorials": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Animierte Lektionen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Animated lessons"
           }
         }
       }
@@ -4330,6 +4347,23 @@
         }
       }
     },
+    "story.challenge.lesson": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lektion ansehen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watch the lesson"
+          }
+        }
+      }
+    },
     "story.challenge.notes %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -5181,16 +5215,16 @@
     "trainer.dueAt %@": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "due %@"
-          }
-        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "fällig %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "due %@"
           }
         }
       }
@@ -5242,6 +5276,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Switch between the two chords as often as you can in one minute. Strum each chord once."
+          }
+        }
+      }
+    },
+    "trainer.lesson": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lektion: Akkordwechsel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lesson: chord changes"
           }
         }
       }
@@ -5960,6 +6011,1264 @@
         }
       }
     },
+    "tutorial.barre.step1.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Zeigefinger legt sich flach über alle sechs Saiten im ersten Bund. Die anderen Finger greifen die E-Dur-Form dahinter: Mittelfinger im zweiten Bund auf der G-Saite, Ring- und kleiner Finger im dritten Bund auf A- und D-Saite."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The index finger lies flat across all six strings at the first fret. The other fingers form the E-major shape behind it: middle finger on the second fret of the G string, ring and little finger on the third fret of the A and D strings."
+          }
+        }
+      }
+    },
+    "tutorial.barre.step1.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Griff"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The shape"
+          }
+        }
+      }
+    },
+    "tutorial.barre.step2.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rolle den Zeigefinger leicht auf die Außenkante und zieh den Hals sanft zu dir, statt nur zu drücken. Der Daumen liegt mittig hinter dem Hals, gegenüber dem Zeigefinger."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roll the index finger slightly onto its outer edge and pull the neck gently towards you instead of just squeezing. The thumb sits centred behind the neck, opposite the index finger."
+          }
+        }
+      }
+    },
+    "tutorial.barre.step2.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hebel statt Kraft"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leverage, not force"
+          }
+        }
+      }
+    },
+    "tutorial.barre.step3.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barré-Akkorde brauchen Tage, nicht Minuten. Prüfe jede Saite einzeln und entspanne die Hand nach jedem Versuch. Sobald F sauber klingt, steht dir das ganze Griffbrett offen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barre chords take days, not minutes. Check each string on its own and relax the hand after every attempt. Once F rings clean, the whole fretboard opens up."
+          }
+        }
+      }
+    },
+    "tutorial.barre.step3.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geduld"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Patience"
+          }
+        }
+      }
+    },
+    "tutorial.barre.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "F-Dur knacken – mit Technik statt Kraft."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crack F major with technique instead of force."
+          }
+        }
+      }
+    },
+    "tutorial.barre.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Barré-Akkord"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The barre chord"
+          }
+        }
+      }
+    },
+    "tutorial.category.basics": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grundlagen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basics"
+          }
+        }
+      }
+    },
+    "tutorial.category.chords": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akkorde"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chords"
+          }
+        }
+      }
+    },
+    "tutorial.category.rhythm": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rhythmus"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rhythm"
+          }
+        }
+      }
+    },
+    "tutorial.category.technique": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Technik"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Technique"
+          }
+        }
+      }
+    },
+    "tutorial.changes.step1.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schau auf beide Griffe: Bei Em → Am wandern zwei Finger nur eine Saite weiter, ein Finger kommt dazu. Bewege die Finger als Gruppe, nicht einzeln."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Look at both shapes: going from Em to Am, two fingers move just one string over and one finger joins. Move the fingers as a group, not one by one."
+          }
+        }
+      }
+    },
+    "tutorial.changes.step1.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was bewegt sich?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What moves?"
+          }
+        }
+      }
+    },
+    "tutorial.changes.step2.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Übe den Wechsel zuerst ohne Anschlag, ganz langsam. Erst wenn die Bewegung sitzt, kommt das Tempo. Ein Metronom hilft: Wechsel auf jede Eins."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Practise the change without strumming first, very slowly. Speed comes only once the motion is automatic. A metronome helps: change on every downbeat."
+          }
+        }
+      }
+    },
+    "tutorial.changes.step2.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langsam ist schnell"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slow is fast"
+          }
+        }
+      }
+    },
+    "tutorial.changes.step3.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zähle, wie viele saubere Wechsel du in einer Minute schaffst. Merk dir die Zahl und versuche, sie jeden Tag zu schlagen. Los geht's!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Count how many clean changes you manage in one minute. Remember the number and try to beat it every day. Go!"
+          }
+        }
+      }
+    },
+    "tutorial.changes.step3.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Ein-Minuten-Challenge"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The one-minute challenge"
+          }
+        }
+      }
+    },
+    "tutorial.changes.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schnell und sauber zwischen Griffen wechseln."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch between shapes fast and clean."
+          }
+        }
+      }
+    },
+    "tutorial.changes.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akkordwechsel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chord changes"
+          }
+        }
+      }
+    },
+    "tutorial.chord.placing %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finger %lld setzen …"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placing finger %lld …"
+          }
+        }
+      }
+    },
+    "tutorial.chord.strum": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Finger sitzen – anschlagen!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All fingers down – strum!"
+          }
+        }
+      }
+    },
+    "tutorial.completed": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lektion abgeschlossen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lesson completed"
+          }
+        }
+      }
+    },
+    "tutorial.finish": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lektion abschließen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish lesson"
+          }
+        }
+      }
+    },
+    "tutorial.firstChords.step1.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der einfachste Akkord: nur zwei Finger. Mittel- und Ringfinger im zweiten Bund auf A- und D-Saite. Alle sechs Saiten dürfen klingen. Schlag langsam an und hör, ob jede Saite sauber klingt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The easiest chord: just two fingers. Middle and ring finger on the second fret of the A and D strings. All six strings can ring. Strum slowly and listen for every string sounding clean."
+          }
+        }
+      }
+    },
+    "tutorial.firstChords.step1.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E-Moll"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E minor"
+          }
+        }
+      }
+    },
+    "tutorial.firstChords.step2.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schiebe die beiden Finger von Em eine Saite tiefer (D und G) und setze den Zeigefinger im ersten Bund auf die H-Saite. Die tiefe E-Saite bleibt stumm. Der Zeigefinger darf die hohe E-Saite nicht berühren."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move both fingers from Em one string down (D and G) and add your index finger on the first fret of the B string. The low E string stays silent. The index finger must not touch the high E string."
+          }
+        }
+      }
+    },
+    "tutorial.firstChords.step2.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A-Moll"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A minor"
+          }
+        }
+      }
+    },
+    "tutorial.firstChords.step3.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guitarro hört mit. Spiele beide Akkorde nacheinander, jeweils mit einem klaren Schlag. Sobald die App den Griff erkennt, leuchtet er auf."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guitarro is listening. Play both chords one after the other, each with one clear strum. As soon as the app recognises the shape, it lights up."
+          }
+        }
+      }
+    },
+    "tutorial.firstChords.step3.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hör hin"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listen"
+          }
+        }
+      }
+    },
+    "tutorial.firstChords.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em und Am – zwei Griffe, die fast jeder Song braucht."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em and Am, two shapes almost every song needs."
+          }
+        }
+      }
+    },
+    "tutorial.firstChords.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine ersten Akkorde"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your first chords"
+          }
+        }
+      }
+    },
+    "tutorial.gcd.step1.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mittelfinger im dritten Bund auf der tiefen E-Saite, Zeigefinger im zweiten Bund auf der A-Saite, Ringfinger im dritten Bund auf der hohen E-Saite. Ein großer, offener Klang."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Middle finger on the third fret of the low E string, index finger on the second fret of the A string, ring finger on the third fret of the high E string. A big, open sound."
+          }
+        }
+      }
+    },
+    "tutorial.gcd.step1.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G-Dur"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G major"
+          }
+        }
+      }
+    },
+    "tutorial.gcd.step2.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ringfinger im dritten Bund auf der A-Saite, Mittelfinger im zweiten Bund auf der D-Saite, Zeigefinger im ersten Bund auf der H-Saite. Die tiefe E-Saite bleibt stumm."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ring finger on the third fret of the A string, middle finger on the second fret of the D string, index finger on the first fret of the B string. The low E string stays silent."
+          }
+        }
+      }
+    },
+    "tutorial.gcd.step2.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C-Dur"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C major"
+          }
+        }
+      }
+    },
+    "tutorial.gcd.step3.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein kleines Dreieck: Zeigefinger im zweiten Bund auf der G-Saite, Ringfinger im dritten Bund auf der H-Saite, Mittelfinger im zweiten Bund auf der hohen E-Saite. Nur die vier hohen Saiten anschlagen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A little triangle: index finger on the second fret of the G string, ring finger on the third fret of the B string, middle finger on the second fret of the high E string. Strum only the four high strings."
+          }
+        }
+      }
+    },
+    "tutorial.gcd.step3.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D-Dur"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D major"
+          }
+        }
+      }
+    },
+    "tutorial.gcd.step4.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G → C → D → G ist die berühmteste Akkordfolge der Welt. Spiele jeden Akkord viermal und wechsle dann. Guitarro prüft, ob alle drei Griffe sauber kommen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G → C → D → G is the most famous chord progression in the world. Play each chord four times, then change. Guitarro checks that all three shapes come out clean."
+          }
+        }
+      }
+    },
+    "tutorial.gcd.step4.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zusammen spielen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play them together"
+          }
+        }
+      }
+    },
+    "tutorial.gcd.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die drei Akkorde hinter tausenden Songs."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The three chords behind thousands of songs."
+          }
+        }
+      }
+    },
+    "tutorial.gcd.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G, C und D"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G, C and D"
+          }
+        }
+      }
+    },
+    "tutorial.posture.step1.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Setz dich auf die vordere Hälfte eines Stuhls ohne Armlehnen. Die Gitarre liegt auf dem rechten Oberschenkel, der Hals zeigt leicht nach oben. Der Rücken bleibt gerade, die Schultern locker."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sit on the front half of a chair without armrests. The guitar rests on your right thigh with the neck pointing slightly upward. Keep your back straight and your shoulders loose."
+          }
+        }
+      }
+    },
+    "tutorial.posture.step1.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sitzen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sitting"
+          }
+        }
+      }
+    },
+    "tutorial.posture.step2.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Daumen liegt hinter dem Hals, etwa auf Höhe des Mittelfingers. Die Finger sind gewölbt und drücken mit den Kuppen kurz hinter dem Bundstäbchen. So klingen die Saiten sauber."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your thumb rests behind the neck, roughly level with your middle finger. Curve your fingers and press with the fingertips just behind the fret wire. That is what makes the strings ring cleanly."
+          }
+        }
+      }
+    },
+    "tutorial.posture.step2.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Greifhand"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The fretting hand"
+          }
+        }
+      }
+    },
+    "tutorial.posture.step3.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Unterarm ruht auf der Zarge, das Handgelenk bleibt locker. Der Anschlag kommt aus dem Handgelenk, nicht aus dem Ellenbogen. Halte das Plektrum leicht, aber sicher."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your forearm rests on the guitar's edge and the wrist stays loose. Strums come from the wrist, not the elbow. Hold the pick lightly but securely."
+          }
+        }
+      }
+    },
+    "tutorial.posture.step3.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Schlaghand"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The strumming hand"
+          }
+        }
+      }
+    },
+    "tutorial.posture.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "So sitzt du entspannt und hältst die Gitarre richtig."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sit relaxed and hold the guitar the right way."
+          }
+        }
+      }
+    },
+    "tutorial.posture.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haltung & Hände"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posture & hands"
+          }
+        }
+      }
+    },
+    "tutorial.strum.listen": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muster anhören"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listen to the pattern"
+          }
+        }
+      }
+    },
+    "tutorial.strumming.step1.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles beginnt mit vier gleichmäßigen Abschlägen pro Takt: 1 – 2 – 3 – 4. Hör dir das Muster an und spiele mit. Die Hand bewegt sich locker aus dem Handgelenk."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything starts with four even downstrokes per bar: 1 – 2 – 3 – 4. Listen to the pattern and play along. The hand moves loosely from the wrist."
+          }
+        }
+      }
+    },
+    "tutorial.strumming.step1.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viertel-Abschläge"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quarter-note downstrokes"
+          }
+        }
+      }
+    },
+    "tutorial.strumming.step2.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ab – Ab – Auf – Auf – Ab – Auf. Das Geheimnis: Die Hand pendelt ununterbrochen auf und ab, auch wenn sie mal keine Saite trifft. So bleibt der Rhythmus stabil."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Down – Down – Up – Up – Down – Up. The secret: the hand keeps swinging up and down without pause, even when it misses the strings. That keeps the rhythm steady."
+          }
+        }
+      }
+    },
+    "tutorial.strumming.step2.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Lagerfeuer-Muster"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The campfire pattern"
+          }
+        }
+      }
+    },
+    "tutorial.strumming.step3.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jetzt bringt das Muster einen Song zum Leben. Spiele „Bruder Jakob“ in langsamem Tempo und halte das Muster durch – Guitarro hört auf die Akkorde."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Now the pattern brings a song to life. Play “Frère Jacques” at a slow tempo and keep the pattern going. Guitarro listens for the chords."
+          }
+        }
+      }
+    },
+    "tutorial.strumming.step3.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Im Song"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In a song"
+          }
+        }
+      }
+    },
+    "tutorial.strumming.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vom gleichmäßigen Abschlag zum ersten Groove."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From steady downstrokes to your first groove."
+          }
+        }
+      }
+    },
+    "tutorial.strumming.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlagmuster"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strumming patterns"
+          }
+        }
+      }
+    },
+    "tutorial.tryIt": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jetzt ausprobieren"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try it now"
+          }
+        }
+      }
+    },
+    "tutorial.tuning.step1.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Von dick nach dünn: E, A, D, G, H, E. Die dicke E-Saite klingt am tiefsten und liegt oben, wenn du die Gitarre hältst. Merkhilfe: „Eine Alte Dame Ging Heringe Essen“."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From thick to thin: E, A, D, G, B, E. The thick E string sounds lowest and sits on top when you hold the guitar. Memory aid: “Eddie Ate Dynamite, Good Bye Eddie”."
+          }
+        }
+      }
+    },
+    "tutorial.tuning.step1.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die sechs Saiten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The six strings"
+          }
+        }
+      }
+    },
+    "tutorial.tuning.step2.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spiele eine Saite und lass sie ausklingen. Die Nadel zeigt, ob der Ton zu tief (links) oder zu hoch (rechts) ist. Drehe den Wirbel langsam, bis die Nadel in der Mitte grün wird."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play one string and let it ring. The needle shows whether the note is flat (left) or sharp (right). Turn the peg slowly until the needle settles in the green centre."
+          }
+        }
+      }
+    },
+    "tutorial.tuning.step2.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Anzeige lesen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading the gauge"
+          }
+        }
+      }
+    },
+    "tutorial.tuning.step3.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stimme immer von zu tief nach oben. Ist die Saite zu hoch, drehe sie etwas herunter und dann wieder hinauf – so bleibt die Stimmung stabil. Probiere es jetzt mit allen sechs Saiten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always approach the pitch from below. If a string is sharp, tune it down a little and then back up, so the tuning holds. Try it now with all six strings."
+          }
+        }
+      }
+    },
+    "tutorial.tuning.step3.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Immer von unten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always tune up"
+          }
+        }
+      }
+    },
+    "tutorial.tuning.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die sechs Saiten, ihre Namen und wie du sie mit dem Stimmgerät triffst."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The six strings, their names and how to nail them with the tuner."
+          }
+        }
+      }
+    },
+    "tutorial.tuning.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stimmen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tuning"
+          }
+        }
+      }
+    },
+    "tutorials.hasCheck": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit Übungscheck"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With practice check"
+          }
+        }
+      }
+    },
+    "tutorials.intro.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kurze, animierte Lektionen mit Griffbildern, Schlagmustern und einem Übungscheck über das Mikrofon."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Short animated lessons with chord shapes, strumming patterns and a microphone check at the end."
+          }
+        }
+      }
+    },
+    "tutorials.intro.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schritt für Schritt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step by step"
+          }
+        }
+      }
+    },
+    "tutorials.minutes %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Min."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min"
+          }
+        }
+      }
+    },
+    "tutorials.progress %lld %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld von %2$lld Lektionen abgeschlossen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld of %2$lld lessons completed"
+          }
+        }
+      }
+    },
+    "tutorials.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutorials"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutorials"
+          }
+        }
+      }
+    },
     "usersongs.add": {
       "extractionState": "manual",
       "localizations": {
@@ -6473,16 +7782,16 @@
     "usersongs.systemPlayer.prepareFailed %@": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The system player could not start this track (%@). Check your Apple Music subscription and that the track is in your library."
-          }
-        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Der Systemplayer konnte den Titel nicht starten (%@). Prüfe dein Apple-Music-Abo und ob der Titel in deiner Mediathek ist."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system player could not start this track (%@). Check your Apple Music subscription and that the track is in your library."
           }
         }
       }

@@ -32,6 +32,8 @@ the review checklist. In-app purchases are testable in the simulator through `Co
   - `Story` – campaign model, "The Lost Melody" content and progress/XP logic
   - `SongAnalysis` – decodes audio files, detects key (Krumhansl), chord timeline (chroma +
     Viterbi) and tempo (onset autocorrelation)
+  - `Tutorials` – lesson model and library (posture, tuning, first chords, changes, G/C/D,
+    strumming, barre) mapped to story/practice challenges
   - `Fretboard` – interactive fretboard view and layout
   - `DesignSystem` – colors, typography, spacing
 
@@ -54,6 +56,10 @@ the review checklist. In-app purchases are testable in the simulator through `Co
   key and tempo, play with tempo 50–100 %, A/B loops and chord feedback with headphones.
   Apple Music / protected tracks play through the system music player; on a first "learn run" the
   app transcribes the chords through the microphone and keeps the timeline
+- Tutorials: animated step-by-step lessons built from the app's own parts (fingers landing on
+  the fretboard one by one, chord changes side by side, strumming patterns with an audible demo,
+  the tuner needle settling), each ending in a microphone practice check; own section under
+  Practice and linked from story challenges and the chord trainer. Steps can carry a video URL
 - Onboarding: level, instrument, handedness (mirrored diagrams for left-handed players), note
   naming and the microphone primer
 - Guitarro Pro (StoreKit 2): monthly, yearly and lifetime; free tier keeps tuner, fretboard,

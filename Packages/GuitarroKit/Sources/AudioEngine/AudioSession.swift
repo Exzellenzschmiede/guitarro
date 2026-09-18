@@ -18,6 +18,10 @@ public enum AudioSession {
             try session.setPreferredSampleRate(48_000)
             try session.setPreferredIOBufferDuration(1024 / 48_000)
             try session.setActive(true)
+            // Measurement mode disables automatic gain; a guitar a metre away is quiet, so open the gain.
+            if session.isInputGainSettable {
+                try? session.setInputGain(1)
+            }
             configured = true
         }
         #endif

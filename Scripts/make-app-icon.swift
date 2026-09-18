@@ -37,34 +37,49 @@ for i in 0..<6 {
     path.stroke()
 }
 
-// Gradient "G": clip to the glyph outline from CoreText, then paint a gradient.
-let font = NSFont.systemFont(ofSize: 640, weight: .heavy)
-let ctFont = font as CTFont
-var character: UniChar = 0x47 // "G"
-var glyphID: CGGlyph = 0
-CTFontGetGlyphsForCharacters(ctFont, &character, &glyphID, 1)
-guard let glyphPath = CTFontCreatePathForGlyph(ctFont, glyphID, nil) else { fatalError("No glyph path") }
-let glyphBounds = glyphPath.boundingBox
-let originX = (CGFloat(size) - glyphBounds.width) / 2 - glyphBounds.minX
-let originY = (CGFloat(size) - glyphBounds.height) / 2 - glyphBounds.minY + 10
-var transform = CGAffineTransform(translationX: originX, y: originY)
-let placedPath = glyphPath.copy(using: &transform)!
+// Three guitars (SF Symbol "guitars.fill") as a luminance mask, painted with an amber gradient.
+let symbolSize = 440.0
+let configuration = NSImage.SymbolConfiguration(pointSize: symbolSize, weight: .bold)
+guard let symbol = NSImage(systemSymbolName: "guitars.fill", accessibilityDescription: nil)?.withSymbolConfiguration(configuration) else {
+    fatalError("Symbol not available")
+}
+let symbolBounds = symbol.size
+let maskRect = NSRect(x: (CGFloat(size) - symbolBounds.width) / 2, y: (CGFloat(size) - symbolBounds.height) / 2 + 10, width: symbolBounds.width, height: symbolBounds.height)
 
-// Glow behind the glyph
+// Render the symbol black on white into a gray context, then invert it so the
+// glyph is white: `clip(to:mask:)` shows where the (non-mask) image is bright.
+let maskContext = CGContext(data: nil, width: size, height: size, bitsPerComponent: 8, bytesPerRow: 0,
+                            space: CGColorSpaceCreateDeviceGray(), bitmapInfo: CGImageAlphaInfo.none.rawValue)!
+var proposed = NSRect(origin: .zero, size: symbolBounds)
+guard let symbolImage = symbol.cgImage(forProposedRect: &proposed, context: nil, hints: nil) else { fatalError("Symbol raster failed") }
+maskContext.setFillColor(gray: 1, alpha: 1)
+maskContext.fill(CGRect(x: 0, y: 0, width: size, height: size))
+maskContext.draw(symbolImage, in: maskRect)
+if let data = maskContext.data {
+    let bytes = data.bindMemory(to: UInt8.self, capacity: maskContext.bytesPerRow * size)
+    for index in 0..<(maskContext.bytesPerRow * size) { bytes[index] = 255 - bytes[index] }
+}
+guard let mask = maskContext.makeImage() else { fatalError("Mask failed") }
+
+// Glow behind the guitars
+cgContext.saveGState()
+cgContext.clip(to: CGRect(x: 0, y: 0, width: size, height: size), mask: mask)
+cgContext.setFillColor(CGColor(red: 1, green: 0.75, blue: 0.35, alpha: 1))
+cgContext.fill(CGRect(x: 0, y: 0, width: size, height: size))
+cgContext.restoreGState()
 cgContext.saveGState()
 cgContext.setShadow(offset: CGSize(width: 0, height: -18), blur: 70, color: CGColor(red: 0.93, green: 0.40, blue: 0.11, alpha: 0.75))
-cgContext.addPath(placedPath)
+cgContext.clip(to: CGRect(x: 0, y: 0, width: size, height: size), mask: mask)
 cgContext.setFillColor(CGColor(red: 1, green: 0.75, blue: 0.35, alpha: 1))
-cgContext.fillPath()
+cgContext.fill(CGRect(x: 0, y: 0, width: size, height: size))
 cgContext.restoreGState()
 
-// Gradient fill
+// Gradient fill through the mask
 cgContext.saveGState()
-cgContext.addPath(placedPath)
-cgContext.clip()
+cgContext.clip(to: CGRect(x: 0, y: 0, width: size, height: size), mask: mask)
 let colors = [CGColor(red: 1.0, green: 0.82, blue: 0.42, alpha: 1), CGColor(red: 0.93, green: 0.40, blue: 0.11, alpha: 1)] as CFArray
 let gradient = CGGradient(colorsSpace: CGColorSpace(name: CGColorSpace.sRGB), colors: colors, locations: [0, 1])!
-cgContext.drawLinearGradient(gradient, start: CGPoint(x: placedPath.boundingBox.minX, y: placedPath.boundingBox.maxY), end: CGPoint(x: placedPath.boundingBox.maxX, y: placedPath.boundingBox.minY), options: [])
+cgContext.drawLinearGradient(gradient, start: CGPoint(x: maskRect.minX, y: maskRect.maxY), end: CGPoint(x: maskRect.maxX, y: maskRect.minY), options: [])
 cgContext.restoreGState()
 
 NSGraphicsContext.restoreGraphicsState()

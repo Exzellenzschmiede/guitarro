@@ -4,12 +4,14 @@ import Story
 import SwiftData
 import SwiftUI
 import Training
+import Tutorials
 
 /// Value-based routes inside the Practice tab. All links are value-based so pushes compose.
 enum LearnRoute: Hashable {
     case chordTrainer
     case cameraCoach
     case aiCoach
+    case tutorials
 }
 
 /// The practice hub: greeting, story progress, tools and quick stats.
@@ -30,6 +32,9 @@ struct PracticeHomeView: View {
                     statsRow
                     GuitarroSectionTitle("practice.tools")
                     LazyVGrid(columns: columns, spacing: GuitarroSpacing.medium) {
+                        NavigationLink(value: LearnRoute.tutorials) {
+                            ToolTile(symbol: "play.rectangle.on.rectangle", palette: .gold, title: "tutorials.title", subtitle: "practice.tile.tutorials")
+                        }
                         NavigationLink(value: LearnRoute.chordTrainer) {
                             ToolTile(symbol: "arrow.triangle.2.circlepath", palette: .amber, title: "trainer.card.title", subtitle: "practice.tile.trainer")
                         }
@@ -83,7 +88,11 @@ struct PracticeHomeView: View {
                 case .chordTrainer: ChordTrainerView()
                 case .cameraCoach: ProGate(feature: "coach.title") { CoachView() }
                 case .aiCoach: ProGate(feature: "coach.ai.title") { CoachChatView() }
+                case .tutorials: TutorialsView()
                 }
+            }
+            .navigationDestination(for: Tutorial.self) { tutorial in
+                TutorialView(tutorial: tutorial)
             }
             .navigationDestination(for: ChordPair.self) { pair in
                 ChordChangeSessionView(pair: pair)

@@ -2,6 +2,7 @@ import DesignSystem
 import Story
 import SwiftData
 import SwiftUI
+import Tutorials
 
 /// Plays a chapter scene by scene: dialogue with a typewriter effect, choices and challenges.
 struct StorySceneView: View {
@@ -18,6 +19,7 @@ struct StorySceneView: View {
     @State private var revealed = ""
     @State private var typing: Task<Void, Never>?
     @State private var activeChallenge: StoryChallenge?
+    @State private var activeTutorial: Tutorial?
     @State private var challengeSucceeded = false
     @State private var showsSuccess = false
     @State private var earnedXP = 0
@@ -48,6 +50,17 @@ struct StorySceneView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: resume)
         .onDisappear { typing?.cancel() }
+        .sheet(item: $activeTutorial) { tutorial in
+            NavigationStack {
+                TutorialView(tutorial: tutorial) { activeTutorial = nil }
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("story.challenge.skip") { activeTutorial = nil }
+                        }
+                    }
+            }
+            .preferredColorScheme(.dark)
+        }
         .fullScreenCover(item: $activeChallenge) { challenge in
             StoryChallengeHost(challenge: challenge, palette: palette) { success in
                 activeChallenge = nil
@@ -195,6 +208,14 @@ struct StorySceneView: View {
                 Label("story.challenge.start", systemImage: "play.fill")
             }
             .buttonStyle(.guitarroPrimary(palette))
+            if let tutorial = TutorialLibrary.tutorial(for: challenge) {
+                Button {
+                    activeTutorial = tutorial
+                } label: {
+                    Label("story.challenge.lesson", systemImage: "play.rectangle.on.rectangle")
+                }
+                .buttonStyle(.guitarroSecondary)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .guitarroCard()
