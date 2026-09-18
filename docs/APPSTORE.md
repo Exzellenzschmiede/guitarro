@@ -8,8 +8,8 @@ own. Version `1.0.0` is set in `project.yml`; `Scripts/release.sh` stamps the bu
 1. **GitHub Pages:** repo Settings -> Pages -> Deploy from branch `main`, folder `/docs`.
    This publishes `https://exzellenzschmiede.github.io/guitarro/` (support) and
    `.../privacy.html` (privacy policy), which the paywall links to.
-2. **Contact address:** replace `SUPPORT-EMAIL-EINTRAGEN` in `docs/index.html` and
-   `docs/privacy.html` with the address you want to be reached at.
+2. **Contact address:** the support and privacy pages use `guitarro@kaniut.de`; make sure that
+   mailbox exists before submitting, App Review may write to it.
 3. **App Store Connect -> Apps -> New App:** iOS, name "Guitarro", primary language German,
    bundle id `de.kaniut.guitarro`, SKU `guitarro-ios`.
 4. **In-app purchases** (Monetization): subscription group "Guitarro Pro" with
