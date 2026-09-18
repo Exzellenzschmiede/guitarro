@@ -53,7 +53,7 @@ public struct ChordMatcher: Sendable {
     public init(
         candidates: [Chord] = defaultCandidates,
         minimumConfidence: Float = 0.8,
-        minimumRMS: Float = 0.008,
+        minimumRMS: Float = 0.0006,
         minimumSpread: Int = 3,
         spreadRatio: Float = 0.2
     ) {

@@ -3294,6 +3294,23 @@
         }
       }
     },
+    "story.campaign.progress %lld %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld/%2$lld Kapitel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld/%2$lld chapters"
+          }
+        }
+      }
+    },
     "story.ch1.c1.intro": {
       "extractionState": "manual",
       "localizations": {
@@ -4695,6 +4712,703 @@
         }
       }
     },
+    "story.hillHouse.ch1.c1.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spiele Am, E und wieder Am. Langsam. Lass jeden Akkord im Raum stehen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Am, E and Am again. Slowly. Let every chord hang in the room."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch1.c1.success": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "… du spielst meine Akkorde. Niemand hat sie hier gespielt, seit ich gegangen bin."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "… you're playing my chords. Nobody has played them here since I left."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch1.ch1.a": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja. Ich will wissen, wer da spielt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yes. I want to know who's playing."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch1.ch1.a.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dann nimm die Gitarre mit. Wer auch immer da oben ist, hört auf Musik, nicht auf Worte."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Then take the guitar. Whoever is up there listens to music, not words."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch1.ch1.b": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ich bin mir nicht sicher …"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I'm not sure …"
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch1.ch1.b.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Musik hat noch nie jemandem geschadet. Nimm sie mit, und du bist nicht allein."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Music has never hurt anyone. Take it with you and you won't be alone."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch1.ch1.prompt": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Willst du wirklich da hoch?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you really want to go up there?"
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch1.d1.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Haus am Hügel steht seit Jahren leer. Trotzdem hört das ganze Dorf in klaren Nächten Gitarre von dort oben."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The house on the hill has stood empty for years. Yet on clear nights the whole village hears a guitar from up there."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch1.d1.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das war Lenas Haus. Sie hat gespielt, als wär die Gitarre ein Teil von ihr. Bis zu dem Winter."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "That was Lena's house. She played as if the guitar were part of her. Until that winter."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch1.d2.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Tür ist nicht abgeschlossen. Im Salon steht ein Stuhl, mitten im Mondlicht, als würde er auf dich warten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The door isn't locked. In the parlour stands a chair, right in the moonlight, as if it were waiting for you."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch1.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Haus, das nachts Musik macht"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A house that makes music at night"
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch1.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Gerücht"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The rumour"
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch2.c1.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A, H, C, D, E, D, C, A. Jeden Ton so, wie der Wind ihn dir gibt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A, B, C, D, E, D, C, A. Each note just as the wind gives it to you."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch2.c1.success": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja. Genau so. Ich hatte vergessen, wie sie klingt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yes. Exactly like that. I had forgotten how it sounds."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch2.d1.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ich bin Lena. Oder das, was von ihr noch Musik machen kann. Ich habe eine Melodie angefangen und nie beendet."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I'm Lena. Or whatever is left of her that can still make music. I started a melody and never finished it."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch2.d1.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeig sie mir."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show me."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch2.d1.3": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hör in den Wind. Er trägt sie schon seit Jahren durch das Haus."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listen to the wind. It has carried it through the house for years."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch2.d2.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Draußen legt sich der Wind. Zum ersten Mal seit Jahren ist es still um das Haus – aber nicht leer."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outside the wind settles. For the first time in years it is quiet around the house, but not empty."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch2.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acht Töne aus dem Nichts"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eight notes out of nowhere"
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch2.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Melodie im Wind"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The melody on the wind"
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch3.c1.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Am und Dm, im Wechsel, eine Minute lang. Die Schatten folgen deinen Händen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Am and Dm, alternating, for one minute. The shadows follow your hands."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch3.c1.success": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ich hab das Licht oben gesehen, von der Straße aus. Das ganze Dorf hat es gesehen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I saw the light up there, from the road. The whole village saw it."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch3.ch1.a": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langsam. Wie ein Walzer."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slow. Like a waltz."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch3.ch1.a.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langsam ist gut. Langsam heißt, jeder Akkord kommt an."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slow is good. Slow means every chord arrives."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch3.ch1.b": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schnell. Sie sollen wirbeln."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast. Let them whirl."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch3.ch1.b.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dann halt die Wechsel sauber, sonst stolpern sie."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Then keep the changes clean, or they'll trip."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch3.ch1.prompt": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sollen die Schatten schnell oder langsam tanzen?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Should the shadows dance fast or slow?"
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch3.d1.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die zweite Nacht. Im Ballsaal bewegen sich Schatten an der Wand, als würde jemand tanzen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The second night. In the ballroom shadows move along the wall as if someone were dancing."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch3.d1.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meine Eltern haben hier getanzt. Zu Am und Dm, immer im Wechsel. Kannst du das halten?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My parents danced here. To Am and Dm, always alternating. Can you hold that?"
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch3.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Am und Dm im Takt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Am and Dm in time"
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch3.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tanz der Schatten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dance of the shadows"
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch4.c1.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„House of the Rising Sun“. Spiel es für mich, einmal bis zum Ende."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“House of the Rising Sun”. Play it for me, once, all the way to the end."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch4.c1.success": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beim letzten Akkord gehen im ganzen Haus die Lichter an. Und dann, ganz sanft, wieder aus."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On the last chord every light in the house comes on. And then, very gently, goes out again."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch4.d1.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die dritte Nacht. Das halbe Dorf steht mit Laternen am Fuß des Hügels. Opa Hannes hat seine alte Gitarre dabei."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The third night. Half the village stands at the foot of the hill with lanterns. Grandpa Hannes has brought his old guitar."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch4.d1.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Es gab ein Lied, das sie immer zuletzt gespielt hat. Wenn du es spielst, kann sie gehen. Ich glaube, sie will das."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There was a song she always played last. If you play it, she can go. I think she wants to."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch4.d2.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Danke. Die Melodie gehört jetzt dir. Bring sie nach draußen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thank you. The melody is yours now. Take it outside."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch4.d2.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Komm. Unten wartet Kaffee, und die Leute wollen wissen, was du da oben gespielt hast."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Come on. There's coffee waiting below, and people want to know what you played up there."
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch4.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "House of the Rising Sun"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "House of the Rising Sun"
+          }
+        }
+      }
+    },
+    "story.hillHouse.ch4.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das letzte Lied"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The last song"
+          }
+        }
+      }
+    },
+    "story.hillHouse.tagline": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In der alten Villa spielt nachts jemand Gitarre. Finde heraus, wer – mit Moll-Akkorden und einer Melodie im Wind."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Someone plays guitar in the old villa at night. Find out who, with minor chords and a melody on the wind."
+          }
+        }
+      }
+    },
+    "story.hillHouse.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Haus am Hügel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The House on the Hill"
+          }
+        }
+      }
+    },
     "story.kicker": {
       "extractionState": "manual",
       "localizations": {
@@ -4750,6 +5464,23 @@
         }
       }
     },
+    "story.overall %lld %lld %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld von %2$lld Geschichten · %3$lld XP gesamt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld of %2$lld stories · %3$lld XP total"
+          }
+        }
+      }
+    },
     "story.progress %@ %@ %@": {
       "comment": "A label showing the user's progress in the story. The first argument is the number of chapters completed. The second argument is the total number of chapters. The third argument is the total XP.",
       "isCommentAutoGenerated": true,
@@ -4775,6 +5506,737 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld of %lld chapters · %lld XP"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.c1.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G, D, Em, C. Jeden Akkord sauber anschlagen und klingen lassen. Dann hast du deinen ersten Song im Blut."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G, D, Em, C. Strum each chord cleanly and let it ring. Then your first song is in your blood."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.c1.success": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hörst du das? Das ist der Sound von hundert Sommerhits. Weiter geht's."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hear that? That's the sound of a hundred summer hits. Let's roll."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.ch1.a": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ich spiele. Gib mir die Gitarre."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I play. Hand me the guitar."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.ch1.a.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "So gefällt mir das. G, D, Em, C – das ist die halbe Radiogeschichte."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "That's what I like to hear. G, D, Em, C is half the history of radio."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.ch1.b": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ich fahre erst mal."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I'll drive for now."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.ch1.b.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okay, aber am ersten Rastplatz bist du dran. Ich zähle die Kilometer."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fine, but at the first rest stop you're on. I'm counting the kilometres."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.ch1.prompt": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fährst du die erste Etappe oder spielst du?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you drive the first leg or do you play?"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.d1.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sommer. Der Van riecht nach Kaffee und altem Teppich. Nova sitzt auf dem Beifahrersitz, Jules trommelt aufs Armaturenbrett."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summer. The van smells of coffee and old carpet. Nova is in the passenger seat, Jules is drumming on the dashboard."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.d1.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drei Tage bis zum Festival. Und wir haben keinen Gitarristen. Also: du."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Three days to the festival. And we have no guitarist. So: you."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.d1.3": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Panik. Fast jeder Song da draußen besteht aus denselben vier Akkorden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No panic. Almost every song out there is made of the same four chords."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.d2.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rastplatz. Motor aus. Jules holt die Gitarre vom Rücksitz und drückt sie dir in die Hand."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest stop. Engine off. Jules grabs the guitar from the back seat and puts it in your hands."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vier Akkorde und ein voller Tank"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Four chords and a full tank"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch1.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abfahrt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Departure"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch2.c1.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eine Minute. G zu D und zurück, so oft du kannst, ohne dass ein Ton stirbt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One minute. G to D and back, as often as you can without a single note dying."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch2.c1.success": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Loch ist weg. Jetzt könnte ich dazu singen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The hole is gone. Now I could actually sing to that."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch2.d1.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mitternacht. Die Tankstelle flackert grün und rosa. Jules kauft Chips, Nova lehnt am Van und summt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Midnight. The gas station flickers green and pink. Jules buys crisps, Nova leans on the van and hums."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch2.d1.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein G klingt gut. Dein D auch. Aber dazwischen ist ein Loch, in das ein Lastwagen passt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your G sounds good. So does your D. But between them is a hole you could park a truck in."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch2.d2.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Wechsel ist der Song. Nicht die Akkorde. Der Wechsel."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The change is the song. Not the chords. The change."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch2.d3.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Van rollt zurück auf die Landstraße. Im Rückspiegel wird die Tankstelle zu einem kleinen Stern."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The van rolls back onto the country road. In the mirror the gas station shrinks to a small star."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch2.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wechsel im Neonlicht"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes in neon light"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch2.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tankstelle bei Nacht"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gas station at night"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch3.c1.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G, A, H, D, H, A, G. Jeden Ton einzeln, klar und ruhig. Das ist unser Intro."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "G, A, B, D, B, A, G. Each note on its own, clear and calm. That's our intro."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch3.c1.success": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das war's. Genau das. Wenn der Abschleppwagen kommt, spielen wir es ihm vor."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "That's it. Exactly that. When the tow truck comes, we'll play it for the driver."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch3.ch1.a": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langsam. Ton für Ton."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slow. Note by note."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch3.ch1.a.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kluge Wahl. Langsam richtig ist schneller als schnell falsch."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart. Slow and right is faster than fast and wrong."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch3.ch1.b": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gleich im Tempo!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Straight to tempo!"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch3.ch1.b.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ha! Ich mag deinen Mut. Aber hör zu, was Jules dir zeigt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ha! I like your nerve. But listen to what Jules shows you."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch3.ch1.prompt": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Willst du das Riff langsam oder gleich im Tempo?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Want the riff slow or straight up to tempo?"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch3.d1.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Knall, dann Dampf. Der Van steht am Straßenrand zwischen Sonnenblumen. Der Abschleppdienst kommt in zwei Stunden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A bang, then steam. The van sits on the roadside between sunflowers. The tow truck will take two hours."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch3.d1.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zwei Stunden. Weißt du, was man in zwei Stunden lernen kann? Ein Riff, das Leute zum Umdrehen bringt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Two hours. You know what you can learn in two hours? A riff that makes people turn their heads."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch3.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Riff gegen die Langeweile"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A riff against boredom"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch3.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Panne"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The breakdown"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch4.c1.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bleib bei den Akkorden, egal was passiert. Das Publikum verzeiht alles, nur kein Aufhören."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stay on the chords, whatever happens. The crowd forgives everything except stopping."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch4.c1.success": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der letzte Akkord verklingt. Einen Moment ist es still. Dann bricht das Feld in Jubel aus."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The last chord fades. For a moment it's silent. Then the whole field erupts."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch4.d1.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abends. Lichterketten über einem Feld, tausend Leute, Staub in der Luft. Hinter der Bühne zittern deine Hände ein bisschen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Evening. String lights over a field, a thousand people, dust in the air. Backstage your hands shake a little."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch4.d1.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Song. Wir spielen „When the Saints“. Du hältst die Akkorde, ich singe, Jules trommelt. Bereit?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One song. We're playing “When the Saints”. You hold the chords, I sing, Jules drums. Ready?"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch4.d2.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht schlecht für jemanden, der vor drei Tagen noch fahren wollte."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not bad for someone who wanted to drive three days ago."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch4.d2.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nächstes Jahr wieder? Dann mit eigenen Songs."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Same again next year? With our own songs then."
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch4.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Song, ein Festival"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One song, one festival"
+          }
+        }
+      }
+    },
+    "story.roadtrip.ch4.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Bühne"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The stage"
+          }
+        }
+      }
+    },
+    "story.roadtrip.tagline": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein alter Van, zwei Freunde und ein Festival am Ende der Straße. Vier Akkorde bringen dich hin."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An old van, two friends and a festival at the end of the road. Four chords will get you there."
+          }
+        }
+      }
+    },
+    "story.roadtrip.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roadtrip"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roadtrip"
+          }
+        }
+      }
+    },
+    "story.select": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Geschichten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your stories"
           }
         }
       }
@@ -4813,6 +6275,57 @@
         }
       }
     },
+    "story.speaker.hannes": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opa Hannes"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grandpa Hannes"
+          }
+        }
+      }
+    },
+    "story.speaker.jules": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jules"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jules"
+          }
+        }
+      }
+    },
+    "story.speaker.lena": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lena"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lena"
+          }
+        }
+      }
+    },
     "story.speaker.mila": {
       "extractionState": "manual",
       "localizations": {
@@ -4843,6 +6356,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Narrator"
+          }
+        }
+      }
+    },
+    "story.speaker.nova": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nova"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nova"
           }
         }
       }
@@ -5684,6 +7214,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Audio unavailable"
+          }
+        }
+      }
+    },
+    "tuner.hint.quiet": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu leise: näher ans Mikrofon oder kräftiger spielen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too quiet: move closer to the microphone or play harder."
+          }
+        }
+      }
+    },
+    "tuner.level": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Level"
           }
         }
       }
@@ -7231,6 +8795,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld min"
+          }
+        }
+      }
+    },
+    "tutorials.progress %@ %@": {
+      "comment": "A description of the number of tutorials completed and the total number of tutorials.",
+      "isCommentAutoGenerated": true,
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "tutorials.progress %1$@ %2$@"
           }
         }
       }

@@ -33,7 +33,7 @@ private func synthesize(
 
     @Test func silenceReturnsNil() {
         #expect(detector.estimate([Float](repeating: 0, count: 4096)) == nil)
-        #expect(detector.estimate(synthesize(frequency: 110, amplitude: 0.001)) == nil)
+        #expect(detector.estimate(synthesize(frequency: 110, amplitude: 0.0001)) == nil)
     }
 
     @Test func tooShortBufferReturnsNil() {
@@ -86,5 +86,26 @@ private func synthesize(
         #expect(estimate != nil)
         guard let estimate else { return }
         #expect(abs(estimate.frequency - 220) / 220 < 0.003)
+    }
+
+    @Test(arguments: [196.0, 329.63, 440.0])
+    func noisyToneNeverDropsToASubharmonic(frequency: Double) {
+        // Enough white noise to push the true period's dip above the threshold: the fallback
+        // must still pick the fundamental and not a random multiple of the period.
+        var state: UInt64 = 42
+        func random() -> Float {
+            state = state &* 6364136223846793005 &+ 1442695040888963407
+            return Float(state >> 40) / Float(1 << 24) * 2 - 1
+        }
+        var subharmonics = 0
+        var detections = 0
+        for _ in 0..<24 {
+            let signal = synthesize(frequency: frequency, amplitude: 0.5).map { $0 + 0.3 * random() }
+            guard let estimate = detector.estimate(signal) else { continue }
+            detections += 1
+            if estimate.frequency < frequency * 0.9 { subharmonics += 1 }
+        }
+        #expect(detections >= 12)
+        #expect(subharmonics == 0)
     }
 }

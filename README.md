@@ -23,8 +23,9 @@ the review checklist. In-app purchases are testable in the simulator through `Co
 - `Guitarro/` – the app target (SwiftUI, localization, features)
 - `Packages/GuitarroKit/` – local Swift package with the core modules
   - `MusicTheory` – pitches, note names, intervals, chords, voicings, tunings
-  - `AudioEngine` – microphone capture, pitch detection (YIN), chord detection (harmonic-corrected chroma
-    + template matching), plucked-string synthesis (Karplus-Strong)
+  - `AudioEngine` – microphone capture, adaptive noise gate, pitch detection (YIN with subharmonic
+    guard), chord detection (harmonic-corrected chroma + template matching), plucked-string
+    synthesis (Karplus-Strong)
   - `Training` – chord-change curriculum and SM-2 style spaced-repetition scheduler
   - `HandCoach` – Vision hand-pose detection, fretting-hand posture analysis, camera session
   - `Songs` – song model, traditional song library, playback timeline
@@ -50,8 +51,10 @@ the review checklist. In-app purchases are testable in the simulator through `Co
   and per-bar chord feedback by ear (with headphones or with the backing off)
 - AI coach: chat that knows the player's progress; runs on-device where Apple Intelligence is
   available, otherwise via Claude with the player's own API key (stored in the Keychain)
-- Story mode: "The Lost Melody", six chapters with dialogue, choices and playable challenges
-  (tuning, notes, chords, one-minute changes, a song) that gate progress; XP and levels
+- Story mode: three stories with dialogue, choices and playable challenges (tuning, notes,
+  chords, one-minute changes, a song) that gate progress; XP and levels carry across stories.
+  "The Lost Melody" (six chapters, first two free), "Roadtrip" (four chapters, G/D/Em/C and a
+  festival gig) and "The House on the Hill" (four chapters, minor chords and a ghost)
 - Your own songs (Pro): import DRM-free tracks from the music library or audio files, get chords,
   key and tempo, play with tempo 50–100 %, A/B loops and chord feedback with headphones.
   Apple Music / protected tracks play through the system music player; on a first "learn run" the

@@ -2,6 +2,10 @@ import Foundation
 
 public enum StorySpeaker: String, Sendable, Hashable, Codable {
     case narrator, you, rosa, ferro, mila, bo
+    // Roadtrip
+    case nova, jules
+    // The house on the hill
+    case lena, hannes
 }
 
 public struct StoryLine: Hashable, Sendable {
@@ -100,15 +104,29 @@ public struct StoryChapter: Identifiable, Hashable, Sendable {
     public var sceneIDs: [String] { scenes.map(\.id) }
 }
 
-public struct StoryCampaignDefinition: Sendable, Hashable {
+public struct StoryCampaignDefinition: Sendable, Hashable, Identifiable {
     public let id: String
     public let titleKey: String
+    public let taglineKey: String
+    public let symbol: String
+    /// Name of a `GuitarroPalette` for the campaign card.
+    public let theme: String
+    /// Every text key of the campaign starts with this (e.g. "story.roadtrip.").
+    public let textPrefix: String
     public let chapters: [StoryChapter]
 
-    public init(id: String, titleKey: String, chapters: [StoryChapter]) {
+    public init(id: String, titleKey: String, taglineKey: String, symbol: String, theme: String, textPrefix: String, chapters: [StoryChapter]) {
         self.id = id
         self.titleKey = titleKey
+        self.taglineKey = taglineKey
+        self.symbol = symbol
+        self.theme = theme
+        self.textPrefix = textPrefix
         self.chapters = chapters
+    }
+
+    public func isComplete(for state: StoryState) -> Bool {
+        chapters.allSatisfy(state.isChapterComplete)
     }
 
     public func chapter(id: String) -> StoryChapter? {

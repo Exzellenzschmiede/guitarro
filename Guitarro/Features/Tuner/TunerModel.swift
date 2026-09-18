@@ -2,6 +2,7 @@ import AudioEngine
 import Foundation
 import MusicTheory
 import Observation
+import os
 
 struct TunerReading: Equatable {
     var frequency: Double
@@ -37,6 +38,12 @@ final class TunerModel {
 
     private(set) var status: Status = .idle
     private(set) var reading: TunerReading?
+    /// Level of the last analysed window, for the input meter.
+    private(set) var inputLevel = PitchTracker.InputLevel()
+    /// True after several seconds of listening without the gate ever opening.
+    private(set) var isInputTooQuiet = false
+    private var listeningSince: ContinuousClock.Instant?
+    private var lastOpenAt: ContinuousClock.Instant?
     var mode: TunerMode = .auto
     var tuning: Tuning = .standard {
         didSet { history.removeAll() }
@@ -47,8 +54,11 @@ final class TunerModel {
 
     private var tracker: PitchTracker?
     private var history: [Double] = []
+    /// A frequency that disagreed with the history and how many frames have agreed with it.
+    private var pending: (frequency: Double, frames: Int)?
+    private let framesToConfirm = 3
     private var lastVoicedAt: ContinuousClock.Instant?
-    private let minimumClarity: Float = 0.75
+    private let minimumClarity: Float = 0.7
     private let holdDuration: Duration = .milliseconds(800)
     private let historyLength = 5
 
@@ -89,11 +99,18 @@ final class TunerModel {
             return
         }
 
-        let tracker = PitchTracker()
+        // Guitar tuning never needs more than the 12th fret of the high E string; very short
+        // periods are where room noise looks periodic.
+        var configuration = PitchTracker.Configuration()
+        configuration.minimumFrequency = 60
+        configuration.maximumFrequency = 1100
+        let tracker = PitchTracker(configuration: configuration)
         do {
             let stream = try tracker.start()
             self.tracker = tracker
             status = .listening
+            listeningSince = .now
+            lastOpenAt = nil
             for await estimate in stream {
                 ingest(estimate)
             }
@@ -111,24 +128,53 @@ final class TunerModel {
         }
         reading = nil
         history.removeAll()
+        inputLevel = PitchTracker.InputLevel()
+        isInputTooQuiet = false
     }
 
     // MARK: Analysis
 
+    private static let logger = Logger(subsystem: "de.kaniut.guitarro", category: "TunerModel")
+
     private func ingest(_ estimate: PitchEstimate?) {
         let now = ContinuousClock.now
+        if let tracker {
+            let level = tracker.inputLevel
+            inputLevel = level
+            #if DEBUG
+            Self.logger.debug("frame rms=\(level.rms, format: .fixed(precision: 5)) gate=\(level.threshold, format: .fixed(precision: 5)) open=\(level.isOpen) f=\(estimate?.frequency ?? 0, format: .fixed(precision: 1)) clarity=\(estimate?.clarity ?? 0, format: .fixed(precision: 2))")
+            #endif
+            if level.isOpen { lastOpenAt = now }
+            let reference = lastOpenAt ?? listeningSince ?? now
+            isInputTooQuiet = now - reference > .seconds(4)
+        }
         guard let estimate, estimate.clarity >= minimumClarity else {
             if let lastVoicedAt, now - lastVoicedAt > holdDuration {
                 reading = nil
                 history.removeAll()
+                pending = nil
             }
             return
         }
         lastVoicedAt = now
 
-        // A jump of more than ~3 % is a new note, not jitter: restart smoothing.
+        // A jump of more than ~3 % is a new note, not jitter, but a single frame can also be a
+        // noise glitch: only restart smoothing once a second frame agrees with the newcomer.
         if let current = median(history), abs(estimate.frequency / current - 1) > 0.03 {
-            history.removeAll()
+            if let pending, abs(estimate.frequency / pending.frequency - 1) <= 0.03 {
+                let frames = pending.frames + 1
+                guard frames >= framesToConfirm else {
+                    self.pending = (pending.frequency, frames)
+                    return
+                }
+                history = [pending.frequency]
+                self.pending = nil
+            } else {
+                pending = (estimate.frequency, 1)
+                return
+            }
+        } else {
+            pending = nil
         }
         history.append(estimate.frequency)
         if history.count > historyLength {

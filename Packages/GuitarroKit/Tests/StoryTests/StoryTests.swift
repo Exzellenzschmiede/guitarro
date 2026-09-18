@@ -5,17 +5,23 @@ import Testing
     let campaign = StoryCampaign.lostMelody
 
     @Test func sceneIDsAreUniqueAndChaptersNumbered() {
-        let ids = campaign.chapters.flatMap(\.sceneIDs)
+        let ids = StoryCampaign.all.flatMap { $0.chapters.flatMap(\.sceneIDs) }
         #expect(Set(ids).count == ids.count)
-        #expect(campaign.chapters.map(\.number) == Array(1...campaign.chapters.count))
-        for chapter in campaign.chapters {
-            #expect(chapter.scenes.contains { $0.isChallenge }, "\(chapter.id) needs a challenge")
+        let campaignIDs = StoryCampaign.all.map(\.id)
+        #expect(Set(campaignIDs).count == campaignIDs.count)
+        for campaign in StoryCampaign.all {
+            #expect(campaign.chapters.map(\.number) == Array(1...campaign.chapters.count))
+            for chapter in campaign.chapters {
+                #expect(chapter.scenes.contains { $0.isChallenge }, "\(chapter.id) needs a challenge")
+            }
         }
     }
 
-    @Test func textKeysFollowTheNamingScheme() {
+    @Test(arguments: StoryCampaign.all)
+    func textKeysFollowTheNamingScheme(campaign: StoryCampaignDefinition) {
+        #expect(campaign.titleKey.hasPrefix(campaign.textPrefix))
         for chapter in campaign.chapters {
-            let prefix = "story.ch\(chapter.number)."
+            let prefix = "\(campaign.textPrefix)ch\(chapter.number)."
             #expect(chapter.titleKey.hasPrefix(prefix))
             for scene in chapter.scenes {
                 switch scene {

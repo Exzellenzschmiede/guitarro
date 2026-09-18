@@ -43,6 +43,7 @@ final class FretboardModel {
     private var listeningTask: Task<Void, Never>?
     private var lastHeardAt: ContinuousClock.Instant?
     private var lastHeardPitch: Pitch?
+    private var candidatePitch: Pitch?
     private let liveHold: Duration = .milliseconds(700)
 
     // MARK: Chords
@@ -176,6 +177,7 @@ final class FretboardModel {
         if listeningStatus == .listening { listeningStatus = .off }
         livePositions = []
         lastHeardPitch = nil
+        candidatePitch = nil
     }
 
     func stopAll() {
@@ -185,16 +187,22 @@ final class FretboardModel {
 
     private func ingest(_ estimate: PitchEstimate?) {
         let now = ContinuousClock.now
-        guard let estimate, estimate.clarity >= 0.85 else {
+        guard let estimate, estimate.clarity >= 0.7 else {
             if let lastHeardAt, now - lastHeardAt > liveHold {
                 livePositions = []
                 lastHeardPitch = nil
+                candidatePitch = nil
             }
             return
         }
         lastHeardAt = now
         let pitch = Pitch.nearest(toFrequency: estimate.frequency).pitch
         guard pitch != lastHeardPitch else { return }
+        // A single frame can be a glitch: wait for the same note twice in a row.
+        guard pitch == candidatePitch else {
+            candidatePitch = pitch
+            return
+        }
         lastHeardPitch = pitch
         livePositions = Set(tuning.positions(of: pitch, maxFret: fretCount))
     }

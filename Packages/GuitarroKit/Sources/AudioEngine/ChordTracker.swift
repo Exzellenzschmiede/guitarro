@@ -26,12 +26,15 @@ public final class ChordTracker: @unchecked Sendable {
         let analyzer = ChromaAnalyzer(sampleRate: sampleRate, windowSize: configuration.windowSize)
         let matcher = configuration.matcher
         let (stream, continuation) = AsyncStream<ChordEstimate>.makeStream(bufferingPolicy: .bufferingNewest(1))
+        let gate = GateBox()
         let pipeline = WindowedAnalysisPipeline(
             windowSize: configuration.windowSize,
             hopSize: configuration.hopSize,
             continuation: continuation
         ) { window in
-            guard let frame = analyzer.analyze(window) else { return ChordEstimate.silence }
+            guard gate.process(rms: InputMeter.rms(window)), let frame = analyzer.analyze(window) else {
+                return ChordEstimate.silence
+            }
             return matcher.match(frame)
         }
 

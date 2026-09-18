@@ -6,6 +6,7 @@ import Tutorials
 
 /// Plays a chapter scene by scene: dialogue with a typewriter effect, choices and challenges.
 struct StorySceneView: View {
+    let campaign: StoryCampaignDefinition
     let chapter: StoryChapter
 
     @Query private var progressRows: [StoryProgress]
@@ -25,7 +26,6 @@ struct StorySceneView: View {
     @State private var earnedXP = 0
     @State private var chapterFinished = false
 
-    private var campaign: StoryCampaignDefinition { StoryCampaign.lostMelody }
     private var palette: GuitarroPalette { GuitarroPaletteName.palette(for: chapter.theme) }
     private var scene: StoryScene? { chapter.scenes.indices.contains(sceneIndex) ? chapter.scenes[sceneIndex] : nil }
 
@@ -255,7 +255,7 @@ struct StorySceneView: View {
 
     // MARK: Flow
 
-    private var currentState: StoryState { progressRows.first?.state ?? StoryState() }
+    private var currentState: StoryState { progressRows.state(for: campaign) }
 
     private func resume() {
         let state = currentState
@@ -369,10 +369,10 @@ struct StorySceneView: View {
     }
 
     private func save(_ state: StoryState) {
-        if let row = progressRows.first {
+        if let row = progressRows.first(where: { $0.campaignID == campaign.id }) {
             row.state = state
         } else {
-            modelContext.insert(StoryProgress(state: state))
+            modelContext.insert(StoryProgress(campaignID: campaign.id, state: state))
         }
         try? modelContext.save()
     }

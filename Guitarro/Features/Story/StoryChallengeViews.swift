@@ -170,7 +170,7 @@ final class NoteChallengeModel {
         guard let stream = try? tracker.start() else { return }
         self.tracker = tracker
         for await estimate in stream {
-            guard let estimate, estimate.clarity >= 0.8, let target else { continue }
+            guard let estimate, estimate.clarity >= 0.65, let target else { continue }
             let pitch = Pitch.nearest(toFrequency: estimate.frequency).pitch
             heard = pitch
             if pitch == target {

@@ -114,7 +114,49 @@ struct TunerView: View {
             Text(model.displayedCents.map { String(format: "%+.0f ct", $0) } ?? " ")
                 .font(.headline.monospacedDigit())
                 .foregroundStyle(.secondary)
+            levelMeter
         }
+    }
+
+    /// Input level against the adaptive gate, so a player sees whether the microphone hears anything.
+    private var levelMeter: some View {
+        let level = model.inputLevel
+        let fraction = Double(max(0, min(1, (level.decibels + 70) / 70)))
+        let gateFraction = level.threshold > 0 ? Double(max(0, min(1, (20 * log10(level.threshold) + 70) / 70))) : 0
+        return VStack(spacing: 6) {
+            HStack(spacing: 8) {
+                Image(systemName: "mic.fill")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                GeometryReader { proxy in
+                    ZStack(alignment: .leading) {
+                        Capsule().fill(Color.white.opacity(0.1))
+                        Capsule()
+                            .fill(level.isOpen ? Color.guitarroInTune : Color.secondary.opacity(0.7))
+                            .frame(width: proxy.size.width * fraction)
+                        Rectangle()
+                            .fill(Color.guitarroCream.opacity(0.6))
+                            .frame(width: 2)
+                            .offset(x: proxy.size.width * gateFraction)
+                    }
+                }
+                .frame(height: 6)
+                .animation(.linear(duration: 0.05), value: fraction)
+                Text("tuner.level")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: 360)
+            .opacity(model.status == .listening ? 1 : 0)
+            // Always laid out so the pegs below never move when the hint appears.
+            Label("tuner.hint.quiet", systemImage: "speaker.wave.1")
+                .font(.caption)
+                .foregroundStyle(Color.guitarroFlat)
+                .multilineTextAlignment(.center)
+                .frame(height: 34)
+                .opacity(model.isInputTooQuiet && model.reading == nil ? 1 : 0)
+        }
+        .animation(.easeInOut, value: model.isInputTooQuiet)
     }
 
     private var referenceControl: some View {

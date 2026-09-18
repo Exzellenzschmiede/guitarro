@@ -121,8 +121,8 @@ struct PracticeHomeView: View {
     }
 
     private var storyCard: some View {
-        let state = storyProgress.first?.state ?? StoryState()
-        let campaign = StoryCampaign.lostMelody
+        let campaign = storyProgress.currentCampaign
+        let state = storyProgress.state(for: campaign)
         let chapter = campaign.currentChapter(for: state)
         return Button {
             navigation.selectedTab = .story
@@ -130,7 +130,7 @@ struct PracticeHomeView: View {
             HStack(spacing: GuitarroSpacing.medium) {
                 GuitarroIconBadge(chapter.symbol, size: 56, palette: .violet)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("story.continue")
+                    Text(LocalizedStringKey(campaign.titleKey))
                         .font(.caption.bold())
                         .foregroundStyle(Color.guitarroInk.opacity(0.7))
                     Text(LocalizedStringKey(chapter.titleKey))
@@ -154,7 +154,7 @@ struct PracticeHomeView: View {
         let states = progress.skillStates
         let due = ChordChangeScheduler.dueChanges(from: states).count
         let best = states.values.map(\.best).max() ?? 0
-        let level = (storyProgress.first?.state ?? StoryState()).level
+        let level = storyProgress.overallState.level
         return HStack(spacing: GuitarroSpacing.medium) {
             StatTile(value: "\(due)", label: "practice.stat.due", symbol: "clock.badge.exclamationmark", palette: .amber)
             StatTile(value: "\(best)", label: "practice.stat.best", symbol: "bolt.fill", palette: .mint)

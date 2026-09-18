@@ -13,7 +13,8 @@ public struct YINPitchDetector: Sendable {
     public let threshold: Float
     public let minimumFrequency: Double
     public let maximumFrequency: Double
-    /// Windows with an RMS below this linear level are treated as silence.
+    /// Windows with an RMS below this linear level are treated as silence. Deliberately low
+    /// (−70 dBFS): the trackers gate adaptively with `NoiseGate` before calling the detector.
     public let silenceThreshold: Float
 
     public init(
@@ -22,7 +23,7 @@ public struct YINPitchDetector: Sendable {
         threshold: Float = 0.15,
         minimumFrequency: Double = 55,
         maximumFrequency: Double = 1500,
-        silenceThreshold: Float = 0.002
+        silenceThreshold: Float = 0.0003
     ) {
         precondition(windowSize >= 256, "windowSize must be at least 256 samples")
         self.sampleRate = sampleRate
@@ -106,29 +107,35 @@ public struct YINPitchDetector: Sendable {
         }
 
         if tauEstimate < 0 {
-            // No dip below the threshold: fall back to the global minimum if it is at least plausible.
+            // No dip below the threshold: fall back to the global minimum if it is at least
+            // plausible. Every multiple of the true period is also a minimum and noise decides
+            // which one is deepest, so take the shortest period that comes close to the deepest.
             var minValue = Float.greatestFiniteMagnitude
-            var minIndex = tauMin
             for t in tauMin...tauMax where cmnd[t] < minValue {
                 minValue = cmnd[t]
-                minIndex = t
             }
             guard minValue < 0.5 else { return nil }
-            tauEstimate = minIndex
+            var chosen = tauMin
+            for t in tauMin...tauMax where cmnd[t] <= minValue + 0.08 {
+                chosen = t
+                break
+            }
+            // Follow to the local minimum so parabolic interpolation lands on the dip.
+            while chosen + 1 <= tauMax, cmnd[chosen + 1] < cmnd[chosen] { chosen += 1 }
+            tauEstimate = chosen
         }
 
-        // Octave guard: a plucked string whose second harmonic is louder than the fundamental
-        // produces a shallow first dip at half the true period and a much deeper one at the
-        // true period. Only then take the lower octave; for a clean tone both dips are near
-        // zero and the shorter period is correct.
-        let doubled = tauEstimate * 2
-        if doubled + 2 <= tauMax, cmnd[tauEstimate] > 0.06 {
-            var lowIndex = doubled
-            for t in (doubled - 2)...(doubled + 2) where cmnd[t] < cmnd[lowIndex] {
-                lowIndex = t
-            }
-            if cmnd[lowIndex] < 0.5 * cmnd[tauEstimate] {
-                tauEstimate = lowIndex
+        // Subharmonic guard: if a shorter period (τ/2 … τ/4) is almost as periodic as the chosen
+        // one, the chosen one is a multiple of the real period. A tone whose second harmonic
+        // dominates has a clearly shallower dip at τ/2, so it keeps its fundamental.
+        for divisor in 2...4 {
+            let candidate = tauEstimate / divisor
+            guard candidate >= tauMin, candidate > 1 else { continue }
+            var best = candidate
+            for t in max(tauMin, candidate - 1)...min(tauMax, candidate + 1) where cmnd[t] < cmnd[best] { best = t }
+            if cmnd[best] <= cmnd[tauEstimate] + 0.08 {
+                tauEstimate = best
+                break
             }
         }
 
