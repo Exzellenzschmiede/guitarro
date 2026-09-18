@@ -107,37 +107,38 @@ public struct YINPitchDetector: Sendable {
         }
 
         if tauEstimate < 0 {
-            // No dip below the threshold: fall back to the global minimum if it is at least
-            // plausible. Every multiple of the true period is also a minimum and noise decides
-            // which one is deepest, so take the shortest period that comes close to the deepest.
+            // No dip below the threshold: fall back to the global minimum if it is at least plausible.
             var minValue = Float.greatestFiniteMagnitude
+            var minIndex = tauMin
             for t in tauMin...tauMax where cmnd[t] < minValue {
                 minValue = cmnd[t]
+                minIndex = t
             }
             guard minValue < 0.5 else { return nil }
-            var chosen = tauMin
-            for t in tauMin...tauMax where cmnd[t] <= minValue + 0.08 {
-                chosen = t
-                break
-            }
-            // Follow to the local minimum so parabolic interpolation lands on the dip.
-            while chosen + 1 <= tauMax, cmnd[chosen + 1] < cmnd[chosen] { chosen += 1 }
-            tauEstimate = chosen
+            tauEstimate = minIndex
         }
 
-        // Subharmonic guard: if a shorter period (τ/2 … τ/4) is almost as periodic as the chosen
-        // one, the chosen one is a multiple of the real period. A tone whose second harmonic
-        // dominates has a clearly shallower dip at τ/2, so it keeps its fundamental.
-        for divisor in 2...4 {
+        // Subharmonic guard. The cumulative-mean normalisation makes dips at 2τ, 3τ … look deeper
+        // than the dip at the true period τ, so in a noisy frame the first dip below the
+        // threshold (or the global minimum) can land on a multiple of the period. Compare
+        // candidates on the difference normalised by the window energy instead, which treats
+        // τ and its multiples alike: for a real periodicity both are near zero, while a tone
+        // whose second harmonic dominates keeps a clearly higher value at τ/2.
+        let energyScale = Float(2 * max(energy0, 1e-12))
+        func normalised(_ t: Int) -> Float { difference[t] / energyScale }
+        var chosen = tauEstimate
+        // Largest divisor first: the global minimum can sit several periods out.
+        for divisor in stride(from: 8, through: 2, by: -1) {
             let candidate = tauEstimate / divisor
             guard candidate >= tauMin, candidate > 1 else { continue }
             var best = candidate
-            for t in max(tauMin, candidate - 1)...min(tauMax, candidate + 1) where cmnd[t] < cmnd[best] { best = t }
-            if cmnd[best] <= cmnd[tauEstimate] + 0.08 {
-                tauEstimate = best
+            for t in max(tauMin, candidate - 1)...min(tauMax, candidate + 1) where difference[t] < difference[best] { best = t }
+            if normalised(best) <= normalised(tauEstimate) + 0.1 {
+                chosen = best
                 break
             }
         }
+        tauEstimate = chosen
 
         // Parabolic interpolation around the minimum for sub-sample precision.
         var refinedTau = Float(tauEstimate)

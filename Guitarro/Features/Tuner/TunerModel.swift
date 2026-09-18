@@ -43,6 +43,7 @@ final class TunerModel {
     /// True after several seconds of listening without the gate ever opening.
     private(set) var isInputTooQuiet = false
     private var listeningSince: ContinuousClock.Instant?
+    private var previousRMS: Float = 0
     private var lastOpenAt: ContinuousClock.Instant?
     var mode: TunerMode = .auto
     var tuning: Tuning = .standard {
@@ -147,6 +148,11 @@ final class TunerModel {
             if level.isOpen { lastOpenAt = now }
             let reference = lastOpenAt ?? listeningSince ?? now
             isInputTooQuiet = now - reference > .seconds(4)
+            // The attack of a pluck is not periodic yet: a window whose level jumped sharply
+            // against the previous one often reads a subharmonic for a few frames. Wait it out.
+            let isOnset = previousRMS > 0 && level.rms > previousRMS * 2.5
+            previousRMS = level.rms
+            if isOnset { return }
         }
         guard let estimate, estimate.clarity >= minimumClarity else {
             if let lastVoicedAt, now - lastVoicedAt > holdDuration {

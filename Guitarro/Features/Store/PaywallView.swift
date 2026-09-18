@@ -124,6 +124,11 @@ struct PaywallView: View {
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)
+            HStack(spacing: GuitarroSpacing.medium) {
+                Link("pro.terms", destination: Legal.termsOfUse)
+                Link("pro.privacy", destination: Legal.privacyPolicy)
+            }
+            .font(.caption2)
         }
     }
 }

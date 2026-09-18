@@ -14,8 +14,10 @@ Everything below runs on your Mac with your Apple Developer account. Nothing is 
 3. **Privacy:** in App Store Connect answer the nutrition labels with "Data not collected". The app
    uses microphone and camera on device only; the optional AI coach sends chat text to Anthropic when
    the player enters their own API key. Set the age rating to 4+.
-4. **Legal:** publish a privacy policy and terms page and put the URLs into the paywall strings
-   `pro.legal` in `Guitarro/Resources/Localizable.xcstrings`.
+4. **Legal:** the paywall links to `docs/privacy.html` (served by GitHub Pages) and Apple's
+   standard EULA. Enable Pages for the repo (Settings -> Pages -> branch `main`, folder `/docs`) and
+   replace `SUPPORT-EMAIL-EINTRAGEN` in `docs/index.html` and `docs/privacy.html`. Details and the
+   App Store listing texts are in `docs/APPSTORE.md`.
 
 ## Every build
 
