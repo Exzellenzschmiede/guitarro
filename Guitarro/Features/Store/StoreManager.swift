@@ -1,6 +1,7 @@
 import Foundation
 import Observation
 import StoreKit
+import os
 
 /// What the free tier includes; everything else needs Guitarro Pro.
 enum FreeTier {
@@ -26,7 +27,11 @@ final class StoreManager {
     /// Debug builds only: pretend to own Pro so every screen can be tested in the simulator.
     var debugProOverride = false
 
+    /// Products granted by a verified purchase or update in this session. Kept separately
+    /// because `Transaction.currentEntitlements` can lag behind a purchase in the sandbox.
+    private var grantedProductIDs: Set<String> = []
     private var updates: Task<Void, Never>?
+    private static let logger = Logger(subsystem: "de.kaniut.guitarro", category: "Store")
 
     var hasPro: Bool {
         #if DEBUG
@@ -41,6 +46,7 @@ final class StoreManager {
             for await result in Transaction.updates {
                 if case .verified(let transaction) = result {
                     await transaction.finish()
+                    await self?.grant(transaction)
                     await self?.refreshEntitlements()
                 }
             }
@@ -67,11 +73,22 @@ final class StoreManager {
         do {
             switch try await product.purchase() {
             case .success(let verification):
-                guard case .verified(let transaction) = verification else { return false }
-                await transaction.finish()
-                await refreshEntitlements()
-                return true
-            case .userCancelled, .pending:
+                switch verification {
+                case .verified(let transaction):
+                    await transaction.finish()
+                    grant(transaction)
+                    await refreshEntitlements()
+                    Self.logger.notice("Purchased \(transaction.productID, privacy: .public); pro=\(self.isPro)")
+                    return true
+                case .unverified(_, let error):
+                    Self.logger.error("Unverified purchase: \(error.localizedDescription, privacy: .public)")
+                    lastError = String(localized: "pro.error.unverified")
+                    return false
+                }
+            case .userCancelled:
+                return false
+            case .pending:
+                lastError = String(localized: "pro.error.pending")
                 return false
             @unknown default:
                 return false
@@ -91,15 +108,29 @@ final class StoreManager {
         await refreshEntitlements()
     }
 
+    /// Marks a verified transaction as owned right away.
+    private func grant(_ transaction: Transaction) {
+        guard ProductID(rawValue: transaction.productID) != nil else { return }
+        if transaction.revocationDate == nil {
+            grantedProductIDs.insert(transaction.productID)
+        } else {
+            grantedProductIDs.remove(transaction.productID)
+        }
+        isPro = isPro || !grantedProductIDs.isEmpty
+    }
+
     func refreshEntitlements() async {
         var owned = false
+        var seen = 0
         for await result in Transaction.currentEntitlements {
+            seen += 1
             guard case .verified(let transaction) = result else { continue }
             if ProductID(rawValue: transaction.productID) != nil, transaction.revocationDate == nil {
                 owned = true
             }
         }
-        isPro = owned
+        Self.logger.notice("Entitlements: \(seen) transactions, owned=\(owned), granted=\(self.grantedProductIDs.count)")
+        isPro = owned || !grantedProductIDs.isEmpty
     }
 
     func product(_ id: ProductID) -> Product? {

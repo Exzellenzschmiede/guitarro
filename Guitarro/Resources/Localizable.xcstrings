@@ -2381,6 +2381,40 @@
         }
       }
     },
+    "pro.error.pending": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Kauf wartet auf Bestätigung, zum Beispiel durch „Kauf anfordern“. Guitarro Pro wird freigeschaltet, sobald er genehmigt ist."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The purchase is awaiting approval, for example through Ask to Buy. Guitarro Pro unlocks once it is approved."
+          }
+        }
+      }
+    },
+    "pro.error.unverified": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Kauf konnte nicht bestätigt werden. Bitte versuch es erneut oder tippe auf „Käufe wiederherstellen“."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The purchase could not be verified. Please try again or tap “Restore purchases”."
+          }
+        }
+      }
+    },
     "pro.feature.ai": {
       "extractionState": "manual",
       "localizations": {
