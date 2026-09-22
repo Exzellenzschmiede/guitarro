@@ -13,7 +13,6 @@ struct OnboardingView: View {
     @Environment(AppNavigation.self) private var navigation
 
     @State private var page = 0
-    @State private var microphoneGranted: Bool?
 
     private let pageCount = 4
 
@@ -74,24 +73,30 @@ struct OnboardingView: View {
         }
     }
 
+    /// Explains why the microphone is needed. The system permission prompt itself is triggered
+    /// by the footer's "Continue" button, so the user always reaches it after this message
+    /// (App Review guideline 5.1.1): no separate "allow" button, no way around the request.
     private var microphonePage: some View {
         OnboardingPage(symbol: "mic.fill", palette: .mint, title: "onboarding.mic.title", body: "onboarding.mic.body") {
             VStack(spacing: GuitarroSpacing.medium) {
-                switch microphoneGranted {
-                case .some(true):
+                if MicrophonePermission.isGranted {
                     Label("onboarding.mic.granted", systemImage: "checkmark.circle.fill")
                         .foregroundStyle(Color.guitarroInTune)
-                case .some(false):
-                    Label("onboarding.mic.denied", systemImage: "mic.slash")
+                } else if MicrophonePermission.isDenied {
+                    VStack(spacing: GuitarroSpacing.small) {
+                        Label("onboarding.mic.denied", systemImage: "mic.slash")
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            Link("tuner.permission.openSettings", destination: url)
+                                .font(.subheadline.weight(.semibold))
+                        }
+                    }
+                } else {
+                    Text("onboarding.mic.next")
+                        .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
-                case nil:
-                    Button {
-                        Task { microphoneGranted = await MicrophonePermission.request() }
-                    } label: {
-                        Label("onboarding.mic.allow", systemImage: "mic.fill")
-                    }
-                    .buttonStyle(.guitarroPrimary(.mint))
                 }
                 Text("onboarding.mic.privacy")
                     .font(.caption)
@@ -123,10 +128,15 @@ struct OnboardingView: View {
                     if page < pageCount - 1 {
                         withAnimation { page += 1 }
                     } else {
-                        finish()
+                        Task {
+                            // The permission prompt follows the explanation directly; either
+                            // answer ends onboarding.
+                            _ = await MicrophonePermission.request()
+                            finish()
+                        }
                     }
                 } label: {
-                    Label(page < pageCount - 1 ? "story.next" : "onboarding.finish", systemImage: page < pageCount - 1 ? "arrow.right" : "play.fill")
+                    Label("story.next", systemImage: "arrow.right")
                 }
                 .buttonStyle(.guitarroPrimary)
             }
