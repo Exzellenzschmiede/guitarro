@@ -17,6 +17,7 @@ enum LearnRoute: Hashable {
 /// The practice hub: greeting, story progress, tools and quick stats.
 struct PracticeHomeView: View {
     @Environment(AppNavigation.self) private var navigation
+    @Environment(StoreManager.self) private var store
     @Query private var progress: [ChordChangeProgress]
     @Query private var storyProgress: [StoryProgress]
     @State private var showsProfile = false
@@ -39,10 +40,10 @@ struct PracticeHomeView: View {
                             ToolTile(symbol: "arrow.triangle.2.circlepath", palette: .amber, title: "trainer.card.title", subtitle: "practice.tile.trainer")
                         }
                         NavigationLink(value: LearnRoute.cameraCoach) {
-                            ToolTile(symbol: "camera.viewfinder", palette: .sky, title: "coach.card.title", subtitle: "practice.tile.camera")
+                            ToolTile(symbol: "camera.viewfinder", palette: .sky, title: "coach.card.title", subtitle: "practice.tile.camera", needsPro: !store.hasPro)
                         }
                         NavigationLink(value: LearnRoute.aiCoach) {
-                            ToolTile(symbol: "sparkles", palette: .violet, title: "coach.ai.card.title", subtitle: "practice.tile.ai")
+                            ToolTile(symbol: "sparkles", palette: .violet, title: "coach.ai.card.title", subtitle: "practice.tile.ai", needsPro: !store.hasPro)
                         }
                         Button {
                             navigation.selectedTab = .fretboard
@@ -168,10 +169,18 @@ private struct ToolTile: View {
     let palette: GuitarroPalette
     let title: LocalizedStringKey
     let subtitle: LocalizedStringKey
+    /// Shows the Pro badge, like the locked stories and the song import do.
+    var needsPro = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: GuitarroSpacing.small) {
-            GuitarroIconBadge(symbol, size: 44, palette: palette)
+            HStack(alignment: .top) {
+                GuitarroIconBadge(symbol, size: 44, palette: palette)
+                Spacer(minLength: 0)
+                if needsPro {
+                    GuitarroPill("pro.badge", tint: Color(red: 1.0, green: 0.84, blue: 0.4))
+                }
+            }
             Text(title)
                 .font(.guitarroHeadline)
                 .foregroundStyle(Color.guitarroCream)
