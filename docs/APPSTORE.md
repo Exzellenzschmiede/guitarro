@@ -1,7 +1,7 @@
 # App Store release checklist
 
 Everything here needs your Apple Developer account. Nothing in the repo uploads or submits on its
-own. Version `1.0` is set in `project.yml` (it must match the version in App Store Connect); `Scripts/release.sh` stamps the build number.
+own. Version `1.0.0` is set in `project.yml` (it must match the version in App Store Connect); `Scripts/release.sh` stamps the build number.
 
 ## Before the first upload
 
@@ -85,7 +85,7 @@ Guitarro Pro gibt es als Monats- oder Jahresabo oder als einmaligen Kauf. Abos v
 Datenschutz: https://exzellenzschmiede.github.io/guitarro/privacy.html
 Nutzungsbedingungen: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 
-**What's new (1.0):** Erste Version.
+**What's new (1.0.0):** Erste Version.
 
 ## Listing (English)
 
