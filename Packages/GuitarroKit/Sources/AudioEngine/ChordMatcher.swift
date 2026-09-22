@@ -39,7 +39,7 @@ public struct ChordMatcher: Sendable {
 
     /// Added to the score of three-note chords so a triad wins over its seventh
     /// version unless the seventh is clearly there.
-    public var triadBias: Float = 0.04
+    public var triadBias: Float = 0.02
 
     private let templates: [[Float]]
 
@@ -50,19 +50,25 @@ public struct ChordMatcher: Sendable {
         [Chord(root, .major), Chord(root, .minor), Chord(root, .dominantSeventh), Chord(root, .minorSeventh)]
     }
 
+    /// Model each chord tone's harmonics in the template (octave, fifth, major third …)
+    /// so a strummed chord matches without subtracting harmonics from the chroma first.
+    public let harmonicTemplates: Bool
+
     public init(
         candidates: [Chord] = defaultCandidates,
         minimumConfidence: Float = 0.8,
         minimumRMS: Float = 0.0006,
         minimumSpread: Int = 3,
-        spreadRatio: Float = 0.2
+        spreadRatio: Float = 0.2,
+        harmonicTemplates: Bool = true
     ) {
         self.candidates = candidates
         self.minimumConfidence = minimumConfidence
         self.minimumRMS = minimumRMS
         self.minimumSpread = minimumSpread
         self.spreadRatio = spreadRatio
-        templates = candidates.map(Self.template(for:))
+        self.harmonicTemplates = harmonicTemplates
+        templates = candidates.map { Self.template(for: $0, harmonics: harmonicTemplates) }
     }
 
     /// Similarity of a chroma vector with every candidate (same order as `candidates`), triad bias included.
@@ -81,7 +87,7 @@ public struct ChordMatcher: Sendable {
         guard frame.rms >= minimumRMS, let peak = chroma.max(), peak > 0 else {
             return ChordEstimate(chord: nil, confidence: 0, margin: 0, chroma: chroma, rms: frame.rms)
         }
-        let spread = chroma.filter { $0 >= spreadRatio * peak }.count
+        let spread = fundamentalPitchClasses(in: frame).count
 
         var bestIndex = -1
         var bestScore: Float = 0
@@ -108,11 +114,46 @@ public struct ChordMatcher: Sendable {
         )
     }
 
-    /// Unit-length template: chord tones weighted 1 (root slightly higher), everything else 0.
-    static func template(for chord: Chord) -> [Float] {
+    /// Pitch classes of the notes that sound as fundamentals: notes at least `spreadRatio`
+    /// of the loudest note that are not a partial (octave, fifth, double octave, major
+    /// third, …) of a louder note below them. A single plucked string has one, a strummed
+    /// chord three or more, however rich the harmonics.
+    public func fundamentalPitchClasses(in frame: ChromaFrame) -> Set<Int> {
+        let magnitudes = frame.noteMagnitudes
+        guard let peak = magnitudes.max(), peak > 0 else { return [] }
+        let threshold = 0.1 * peak
+        // Semitone offsets of the 2nd to 16th partial (12·log2(n), rounded).
+        let partialOffsets = [12, 19, 24, 28, 31, 34, 36, 38, 40, 42, 43, 44, 46, 47, 48]
+        var fundamentals: [Int] = []
+        var classes: Set<Int> = []
+        for (index, magnitude) in magnitudes.enumerated() where magnitude >= threshold {
+            // Partials often outweigh their fundamental through a phone microphone, so the
+            // level does not matter: any note sitting on a partial of a counted fundamental
+            // is treated as that fundamental's harmonic.
+            let explained = fundamentals.contains { lower in partialOffsets.contains(index - lower) }
+            if !explained {
+                fundamentals.append(index)
+                classes.insert((frame.lowestMidi + index) % 12)
+            }
+        }
+        return classes
+    }
+
+    /// Unit-length template. Plain: chord tones weighted 1 (root slightly higher). With
+    /// harmonics: every chord tone also spreads onto the pitch classes of its first six
+    /// partials with geometrically decaying weights, the way a plucked string does.
+    static func template(for chord: Chord, harmonics: Bool) -> [Float] {
         var template = [Float](repeating: 0, count: 12)
+        let partialOffsets = [0, 12, 19, 24, 28, 31]
         for (index, pitchClass) in chord.pitchClasses.enumerated() {
-            template[pitchClass.rawValue] = index == 0 ? 1.1 : 1.0
+            let base: Float = index == 0 ? 1.1 : 1.0
+            if harmonics {
+                for (partial, offset) in partialOffsets.enumerated() {
+                    template[(pitchClass.rawValue + offset) % 12] += base * pow(0.55, Float(partial))
+                }
+            } else {
+                template[pitchClass.rawValue] = base
+            }
         }
         let norm = sqrt(template.reduce(0) { $0 + $1 * $1 })
         return template.map { $0 / norm }

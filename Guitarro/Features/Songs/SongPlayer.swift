@@ -174,7 +174,7 @@ final class SongPlayer {
 
     private func ingest(_ estimate: ChordEstimate) {
         guard state == .playing, let heard = estimate.chord else { return }
-        guard let expected = ChordLibrary.voicing(id: currentChordID)?.chord, heard == expected else { return }
+        guard let expected = ChordLibrary.voicing(id: currentChordID)?.chord, heard.isSameFamily(as: expected) else { return }
         barResults[currentBarIndex] = true
     }
 }

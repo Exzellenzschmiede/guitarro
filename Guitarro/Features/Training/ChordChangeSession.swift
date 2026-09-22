@@ -157,12 +157,15 @@ final class ChordChangeSession {
         heardConfidence = estimate.confidence
         guard phase == .running else { return }
 
-        guard let chord = estimate.chord, chord == expected.chord else {
+        // A silent or undecided window keeps the count; a different chord resets it. The
+        // seventh variant of the expected chord counts, that is what beginners strum anyway.
+        guard let chord = estimate.chord else { return }
+        guard chord.isSameFamily(as: expected.chord) else {
             stableFrames = 0
             return
         }
         stableFrames += 1
-        // Two consecutive windows (~170 ms) of the expected chord count as a change.
+        // Two windows (~170 ms) of the expected chord count as a change.
         guard stableFrames >= 2 else { return }
         stableFrames = 0
         if hasHeardFirstChord {

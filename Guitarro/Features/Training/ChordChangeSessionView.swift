@@ -114,7 +114,7 @@ struct ChordChangeSessionView: View {
                 if let heard = session.heardChord {
                     Text("trainer.hearing \(heard.symbol(style: noteNaming))")
                         .font(.subheadline)
-                        .foregroundStyle(heard == session.expected.chord ? Color.guitarroInTune : Color.secondary)
+                        .foregroundStyle(heard.isSameFamily(as: session.expected.chord) ? Color.guitarroInTune : Color.secondary)
                 } else {
                     Text("trainer.listening.none")
                         .font(.subheadline)

@@ -281,8 +281,8 @@ final class ChordChallengeModel {
         self.tracker = tracker
         for await estimate in stream {
             heard = estimate.chord
-            guard let chord = estimate.chord, let target else { streak = 0; continue }
-            if chord == target.chord {
+            guard let chord = estimate.chord, let target else { continue }
+            if chord.isSameFamily(as: target.chord) {
                 streak += 1
                 if streak >= 3 {
                     streak = 0
@@ -339,7 +339,7 @@ struct ChordsChallengeView: View {
             }
             Text(model.heard.map { String(format: String(localized: "trainer.hearing %@"), $0.symbol(style: noteNaming)) } ?? String(localized: "trainer.listening.none"))
                 .font(.subheadline)
-                .foregroundStyle(model.heard == model.target?.chord ? Color.guitarroInTune : Color.secondary)
+                .foregroundStyle(model.heard.map { heard in model.target.map { heard.isSameFamily(as: $0.chord) } ?? false } ?? false ? Color.guitarroInTune : Color.secondary)
             if model.permissionDenied {
                 Label("trainer.micDenied", systemImage: "mic.slash").font(.caption).foregroundStyle(.secondary)
             }

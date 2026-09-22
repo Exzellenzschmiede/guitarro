@@ -74,3 +74,16 @@ public struct Chord: Hashable, Sendable, Codable, Identifiable {
         root.name(style: style, accidentals: accidentals) + quality.symbol
     }
 }
+
+public extension Chord {
+    /// True for the same chord, or for a triad and its seventh extension on the same root
+    /// (G and G7, Am and Am7): what a beginner strums when the sheet says either.
+    func isSameFamily(as other: Chord) -> Bool {
+        guard root == other.root else { return false }
+        if quality == other.quality { return true }
+        let majorFamily: Set<ChordQuality> = [.major, .dominantSeventh]
+        let minorFamily: Set<ChordQuality> = [.minor, .minorSeventh]
+        return (majorFamily.contains(quality) && majorFamily.contains(other.quality))
+            || (minorFamily.contains(quality) && minorFamily.contains(other.quality))
+    }
+}
