@@ -1,7 +1,7 @@
 # App Store release checklist
 
 Everything here needs your Apple Developer account. Nothing in the repo uploads or submits on its
-own. Version `1.0.0` is set in `project.yml` (it must match the version in App Store Connect); `Scripts/release.sh` stamps the build number.
+own. Version `1.1` is set in `project.yml` (it must match the version in App Store Connect); `Scripts/release.sh` stamps the build number.
 
 ## Before the first upload
 
