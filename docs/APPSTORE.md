@@ -20,8 +20,8 @@ own. Version `1.1.1` is set in `project.yml` (it must match the version in App S
 
    | Product | Type | Price | Display name (de / en) | Description (de / en) |
    |---|---|---|---|---|
-   | `de.kaniut.guitarro.pro.monthly` | auto-renewable, 1 month | 4,99 € | Guitarro Pro Monat / Guitarro Pro Monthly | Alle Stories, Songs und Coaches, monatlich / All stories, songs and coaches, monthly |
-   | `de.kaniut.guitarro.pro.yearly` | auto-renewable, 1 year, optional 7-day free trial | 29,99 € | Guitarro Pro Jahr / Guitarro Pro Yearly | Alle Stories, Songs und Coaches, jährlich / All stories, songs and coaches, yearly |
+   | `de.kaniut.guitarro.pro.month` | auto-renewable, 1 month | 4,99 € | Guitarro Pro Monat / Guitarro Pro Monthly | Alle Stories, Songs und Coaches, monatlich / All stories, songs and coaches, monthly |
+   | `de.kaniut.guitarro.pro.year` | auto-renewable, 1 year, optional 7-day free trial | 29,99 € | Guitarro Pro Jahr / Guitarro Pro Yearly | Alle Stories, Songs und Coaches, jährlich / All stories, songs and coaches, yearly |
    | `de.kaniut.guitarro.pro.lifetime` | non-consumable | 39,99 € | Guitarro Pro Lebenslang / Guitarro Pro Lifetime | Alle Pro-Funktionen, einmalig gekauft / All Pro features with a one-time purchase |
 
    Limits: display name 30 characters, description 45 characters. Attach all three to the version

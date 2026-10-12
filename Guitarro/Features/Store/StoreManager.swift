@@ -14,8 +14,8 @@ enum FreeTier {
 @Observable
 final class StoreManager {
     enum ProductID: String, CaseIterable {
-        case monthly = "de.kaniut.guitarro.pro.monthly"
-        case yearly = "de.kaniut.guitarro.pro.yearly"
+        case monthly = "de.kaniut.guitarro.pro.month"
+        case yearly = "de.kaniut.guitarro.pro.year"
         case lifetime = "de.kaniut.guitarro.pro.lifetime"
     }
 

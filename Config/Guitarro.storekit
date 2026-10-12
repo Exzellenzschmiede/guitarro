@@ -65,7 +65,7 @@
               "locale" : "de_DE"
             }
           ],
-          "productID" : "de.kaniut.guitarro.pro.monthly",
+          "productID" : "de.kaniut.guitarro.pro.month",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Pro Monthly",
           "subscriptionGroupID" : "2000000001",
@@ -99,7 +99,7 @@
               "locale" : "de_DE"
             }
           ],
-          "productID" : "de.kaniut.guitarro.pro.yearly",
+          "productID" : "de.kaniut.guitarro.pro.year",
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Pro Yearly",
           "subscriptionGroupID" : "2000000001",

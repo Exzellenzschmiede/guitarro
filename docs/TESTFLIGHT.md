@@ -6,8 +6,8 @@ Everything below runs on your Mac with your Apple Developer account. Nothing is 
 
 1. **App Store Connect:** create the app (bundle id `de.kaniut.guitarro`, or change it in
    `Config/Signing.xcconfig` and `project.yml`). Under *Monetization -> In-App Purchases* create:
-   - Subscription group "Guitarro Pro" with `de.kaniut.guitarro.pro.monthly` (1 month) and
-     `de.kaniut.guitarro.pro.yearly` (1 year, optional 7-day free trial)
+   - Subscription group "Guitarro Pro" with `de.kaniut.guitarro.pro.month` (1 month) and
+     `de.kaniut.guitarro.pro.year` (1 year, optional 7-day free trial)
    - Non-consumable `de.kaniut.guitarro.pro.lifetime`
    The product ids must match `StoreManager.ProductID`. Fill in localized names, prices and a review screenshot.
 2. **Signing:** run `Scripts/bootstrap.sh`, then put your Team ID into `Config/Signing.xcconfig`.
