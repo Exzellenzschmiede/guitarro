@@ -60,6 +60,8 @@ final class StoreManager {
         do {
             let loaded = try await Product.products(for: ProductID.allCases.map(\.rawValue))
             products = loaded.sorted { $0.price < $1.price }
+            let missing = ProductID.allCases.map(\.rawValue).filter { id in !loaded.contains { $0.id == id } }
+            Self.logger.notice("Loaded \(loaded.count, privacy: .public) products; missing: \(missing.joined(separator: ", "), privacy: .public)")
         } catch {
             lastError = error.localizedDescription
         }

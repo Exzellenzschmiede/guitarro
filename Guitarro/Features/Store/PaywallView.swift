@@ -3,6 +3,7 @@ import StoreKit
 import SwiftUI
 
 struct PaywallView: View {
+    @State private var showsRedeemSheet = false
     @Environment(StoreManager.self) private var store
     @Environment(\.dismiss) private var dismiss
     @State private var selected: StoreManager.ProductID = .yearly
@@ -112,8 +113,17 @@ struct PaywallView: View {
 
     private var footer: some View {
         VStack(spacing: GuitarroSpacing.small) {
-            Button("pro.restore") { Task { await store.restore() } }
-                .font(.subheadline)
+            HStack(spacing: GuitarroSpacing.large) {
+                Button("pro.restore") { Task { await store.restore() } }
+                Button("pro.redeem") { showsRedeemSheet = true }
+            }
+            .font(.subheadline)
+            // Apple's own sheet for offer codes (all in-app purchase types since iOS 18). Classic
+            // promo codes are redeemed in the App Store app; the purchase then arrives through
+            // Transaction.updates or "Restore purchases".
+            .offerCodeRedemption(isPresented: $showsRedeemSheet) { _ in
+                Task { await store.refreshEntitlements() }
+            }
             if let error = store.lastError {
                 Text(error)
                     .font(.caption)

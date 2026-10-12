@@ -2670,6 +2670,23 @@
         }
       }
     },
+    "pro.redeem": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Code einlösen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redeem code"
+          }
+        }
+      }
+    },
     "pro.restore": {
       "extractionState": "manual",
       "localizations": {
